@@ -2,17 +2,15 @@
 //  Board.h
 //  Tic-Tac-Toe
 //
-//  Created by A-Team Intern on 12.04.21.
+//  Created by A-Team Intern on 16.04.21.
 //
 
-#ifndef Board_h
-#define Board_h
+#import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface Board : NSObject
 
-
-
 @end
 
-
-#endif /* Board_h */
+NS_ASSUME_NONNULL_END

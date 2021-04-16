@@ -1,5 +1,5 @@
 //
-//  Player.h
+//  Game.h
 //  Tic-Tac-Toe
 //
 //  Created by A-Team Intern on 16.04.21.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Player : NSObject
+@interface Game : NSObject
 
 @end
 
