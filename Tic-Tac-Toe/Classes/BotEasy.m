@@ -1,13 +1,13 @@
 //
-//  Player.m
+//  AI.m
 //  Tic-Tac-Toe
 //
-//  Created by A-Team Intern on 16.04.21.
+//  Created by A-Team Intern on 19.04.21.
 //
 
-#import "Player.h"
+#import "BotEasy.h"
 
-@implementation Player
+@implementation BotEasy
 
 -(instancetype)initWithName:(NSString*)playerName andSymbol:(NSString*)symbol {
     if ([super init]) {
@@ -18,8 +18,15 @@
     return self;
 }
 
+
 -(void)makeMoveWithCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY andBoard:(Board*)board {
-    [board setMoveWithCordX:cordX cordT:cordY andSymbol:self.symbol];
+    //need?
+}
+
+
+-(void)computerChoiceWithBoard:(Board*)board {
+    //int randPosition; // how to know for the free cells
+    
 }
 
 @end

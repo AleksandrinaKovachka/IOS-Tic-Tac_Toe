@@ -1,22 +1,19 @@
 //
-//  Player.h
+//  AI.h
 //  Tic-Tac-Toe
 //
-//  Created by A-Team Intern on 16.04.21.
+//  Created by A-Team Intern on 19.04.21.
 //
 
-#import <Foundation/Foundation.h>
-#import "Board.h"
+#import "Player.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Player : NSObject
-
-@property (strong, nonatomic) NSString* playerName;
-@property (nonatomic) NSUInteger symbol; //1 = X, 0 = O
+@interface BotEasy : Player
 
 -(instancetype)initWithName:(NSString*)playerName andSymbol:(NSString*)symbol;
 -(void)makeMoveWithCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY andBoard:(Board*)board;
+-(void)computerChoiceWithBoard:(Board*)board;
 
 @end
 
