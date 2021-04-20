@@ -19,7 +19,7 @@
 }
 
 -(void)makeMoveWithCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY andBoard:(Board*)board {
-    [board setMoveWithCordX:cordX cordT:cordY andSymbol:self.symbol];
+    [board setMoveWithCordX:cordX cordY:cordY andSymbol:self.symbol];
 }
 
 @end

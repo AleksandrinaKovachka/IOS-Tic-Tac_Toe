@@ -9,7 +9,7 @@
 
 @interface Board ()
 
-@property (strong, nonatomic) NSMutableArray* board;
+@property (strong, nonatomic) NSMutableArray<Cell*>* board;
 
 @end
 
@@ -19,15 +19,13 @@
     if ([super init]) {
         self.rows = rows;
         self.columns = columns;
-        self.board = [[NSMutableArray alloc] initWithCapacity:rows];
+        self.board = [[NSMutableArray alloc] init];
         
         for (NSUInteger i = 0; i < rows; ++i) {
-            NSMutableArray* currentColumn = [NSMutableArray array];
             
             for (NSUInteger j = 0; j < columns; ++j) {
-                [currentColumn addObject:nil];
+                [self.board addObject:[[Cell alloc] initWithcordX:i andCordY:j]];
             }
-            [self.board addObject:currentColumn];
         }
         
     }
@@ -35,7 +33,7 @@
     return self;
 }
 
--(NSMutableString*)display {
+/*-(NSMutableString*)display {
     NSMutableString* boardToString = [[NSMutableString alloc] initWithCapacity:(self.columns * self.rows)];
     for (NSUInteger i = 0; i < self.rows; ++i) {
         NSMutableString* columnToString = [[NSMutableString alloc] initWithCapacity:self.columns];
@@ -47,82 +45,111 @@
     }
     
     return boardToString;
-}
+}*/
 
--(void)setMoveWithCordX:(NSUInteger)cordX cordT:(NSUInteger)cordY andSymbol:(NSUInteger)symbol {
-    self.board[cordX][cordY] = @(symbol);
-}
-
--(BOOL)haveWin {
-    return self.checkHorizontal && self.checkVertical && self.checkDiagonal; //who is the winer
-}
-
--(BOOL)checkHorizontal {
-    BOOL haveWin = YES;
-    for (NSUInteger i = 0; i < self.rows; ++i) {
-        for (NSUInteger j = 0; j < self.columns - 1; ++j) {
-            if (self.board[i][j] == nil || self.board[i][j] != self.board[i][j + 1]) {
-                haveWin = NO;
-            }
+-(NSString*)description {
+    NSMutableString* boardToString = [[NSMutableString alloc] init];
+    NSUInteger count = 1;
+    for (NSUInteger i = 0; i < self.board.count; ++i) {
+        if(count == self.columns) {
+            [boardToString appendString:@"\n"];
+            count = 0;
         }
-        
-        if (haveWin) {
-            return YES;
-        }
-        haveWin = YES;
+        [boardToString appendString:[NSString stringWithFormat:@"%d ", self.board[i].getState]];
+        ++count;
     }
     
-    return haveWin;
+    return boardToString;
 }
 
--(BOOL)checkVertical {
-    BOOL haveWin = YES;
-    
-    for (NSUInteger j = 0; j < self.columns; ++j) {
-        for (NSUInteger i = 0; i < self.rows - 1; ++i) {
-            if (self.board[i][j] == nil || self.board[i][j] != self.board[i + 1][j]) {
-                haveWin = NO;
-            }
-        }
-        
-        if (haveWin) {
-            return YES;
-        }
-        haveWin = YES;
+-(void)setMoveWithCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY andState:(EnumCellState)state {
+    NSUInteger index = (cordX * self.columns) + cordY;
+    [self.board[index] setCordX:cordX cordY:cordY andState:state];
+}
+
+-(EnumCellState)haveWin {
+    if (self.checkHorizontal != EnumCellStateEmpty) {
+        return self.checkHorizontal;
+    } else if (self.checkVertical != EnumCellStateEmpty){
+        return self.checkVertical;
+    } else if (self.checkDiagonal != EnumCellStateEmpty) {
+        return self.checkDiagonal;
     }
     
-    return haveWin;
+    return EnumCellStateEmpty;
 }
 
+-(EnumCellState)checkHorizontal {
+    NSUInteger count = 1;
+    for (NSUInteger i = 0; i < self.board.count; ++i) {
+        if (count == self.columns) { // && self.board[i].getState != EnumCellStateEmpty
+            return self.board[i].getState;
+        }
+        
+        if (self.board[i].getState != self.board[i + 1].getState) {
+            i += self.columns - count;
+            count = 1;
+            continue;
+        }
+        ++count;
+    }
+    
+    return EnumCellStateEmpty;
+}
 
--(BOOL)checkDiagonal {
+-(EnumCellState)checkVertical {
     BOOL haveWin = YES;
     NSUInteger count = self.columns - 1;
+    for (NSUInteger i = 0; i < self.columns; ++i) {
+        
+        for (NSUInteger j = i; j < self.board.count - count; j += self.columns) {
+            if (self.board[j].getState != self.board[j + self.columns].getState) {
+                haveWin = NO;
+                break;
+            }
+        }
+        
+        if (haveWin) { //&& self.board[i].getState != EnumCellStateEmpty
+            return self.board[i].getState;
+        }
+        --count;
+    }
     
-    for (NSUInteger i = 0; i < self.rows - 1; ++i) {
-        if (self.board[i][i] == nil || self.board[i][i] !=  self.board[i + 1][i + 1]) {
+    return EnumCellStateEmpty;
+}
+
+
+-(EnumCellState)checkDiagonal {
+    BOOL haveWin = YES;
+    for (NSUInteger i = 0; i < self.board.count; i += self.columns + 1) {
+        if (self.board[i].getState != self.board[i + self.columns + 1].getState) {
+            haveWin = NO;
+            break;
+        }
+    }
+    if (haveWin) {
+        return self.board[0].getState;
+    }
+    haveWin = YES;
+    for (NSUInteger i = self.columns - 1; i < self.board.count; i += self.columns - 1) {
+        if (self.board[i].getState != self.board[i + self.columns - 1].getState) {
             haveWin = NO;
             break;
         }
     }
     
-    for (NSUInteger i = 0; i < self.rows - 1; ++i) {
-        if (self.board[i][i] == nil || self.board[i][i] !=  self.board[i + 1][count--]) {
-            haveWin = NO;
-            break;
-        }
+    if (haveWin) {
+        return self.board[self.board.count].getState;
     }
     
-    return haveWin;
+    return EnumCellStateEmpty;
 }
 
 
 -(BOOL)checkIsFull {
-    for (NSUInteger j = 0; j < self.columns; ++j) {
-        for (NSUInteger i = 0; i < self.rows; ++i) {
-            if (self.board[i][j] == nil) {
-                return NO;
-            }
+    for (NSUInteger i = 0; i < self.board.count; ++i) {
+        if(self.board[i].getState == EnumCellStateEmpty) {
+            return NO;
         }
     }
     

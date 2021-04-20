@@ -24,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(BOOL)checkWin;
 -(void)makeMoveByPlayer:(NSString*)coordinates; //text by textField - call player makeMove
 -(void)makeMoveByBot;
-
 
 
 

@@ -19,6 +19,7 @@
 		8EBBEF6F2629910700F60244 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBBEF6E2629910700F60244 /* Game.m */; };
 		8EBBEF73262D7C7E00F60244 /* ConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBBEF72262D7C7E00F60244 /* ConsoleViewController.m */; };
 		8EBBEF7D262D950600F60244 /* BotEasy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBBEF7C262D950600F60244 /* BotEasy.m */; };
+		8EBBEF87262EAFFB00F60244 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBBEF86262EAFFB00F60244 /* Cell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		8EBBEF72262D7C7E00F60244 /* ConsoleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConsoleViewController.m; sourceTree = "<group>"; };
 		8EBBEF7B262D950600F60244 /* BotEasy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BotEasy.h; sourceTree = "<group>"; };
 		8EBBEF7C262D950600F60244 /* BotEasy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BotEasy.m; sourceTree = "<group>"; };
+		8EBBEF85262EAFFB00F60244 /* Cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		8EBBEF86262EAFFB00F60244 /* Cell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,8 @@
 				8EBBEF6E2629910700F60244 /* Game.m */,
 				8EBBEF7B262D950600F60244 /* BotEasy.h */,
 				8EBBEF7C262D950600F60244 /* BotEasy.m */,
+				8EBBEF85262EAFFB00F60244 /* Cell.h */,
+				8EBBEF86262EAFFB00F60244 /* Cell.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 				8E580C0D26245F7E0015F22C /* AppDelegate.m in Sources */,
 				8E580C1E26245F7F0015F22C /* main.m in Sources */,
 				8EBBEF73262D7C7E00F60244 /* ConsoleViewController.m in Sources */,
+				8EBBEF87262EAFFB00F60244 /* Cell.m in Sources */,
 				8E580C1026245F7E0015F22C /* SceneDelegate.m in Sources */,
 				8EBBEF6F2629910700F60244 /* Game.m in Sources */,
 				8EBBEF7D262D950600F60244 /* BotEasy.m in Sources */,

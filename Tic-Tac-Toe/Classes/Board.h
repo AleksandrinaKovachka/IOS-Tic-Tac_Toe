@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Cell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,12 +16,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSUInteger columns;
 
 -(instancetype)initWithRows:(NSUInteger)rows andColumns:(NSUInteger)columns;
--(NSMutableString*)display;
--(void)setMoveWithCordX:(NSUInteger)cordX cordT:(NSUInteger)cordY andSymbol:(NSUInteger)symbol;
--(BOOL)haveWin;
--(BOOL)checkHorizontal;
--(BOOL)checkVertical;
--(BOOL)checkDiagonal;
+//-(NSMutableString*)display;
+-(NSString*)description;
+-(void)setMoveWithCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY andState:(EnumCellState)symbol;
+-(EnumCellState)haveWin;
+-(EnumCellState)checkHorizontal;
+-(EnumCellState)checkVertical;
+-(EnumCellState)checkDiagonal;
 -(BOOL)checkIsFull;
 
 
