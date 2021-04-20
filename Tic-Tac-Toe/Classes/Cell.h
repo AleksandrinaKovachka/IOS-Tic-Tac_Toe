@@ -26,6 +26,7 @@ typedef enum {
 -(NSUInteger)getCordY;
 -(EnumCellState)getState;
 -(void)setCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY andState:(EnumCellState)state;
+-(NSArray*)getCordArray;
 
 @end
 

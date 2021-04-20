@@ -11,9 +11,11 @@
 
 -(instancetype)initWithPlayerName:(NSString*)playerName andPlayerSymbol:(NSString*)symbol {
     if ([super init]) {
-        self.player = [self.player initWithName:playerName andSymbol:symbol];
+        self.player = [self.player initWithName:playerName]; //andSymbol:symbol];
         self.board = [self.board initWithRows:3 andColumns:3];
-        self.computer = [self.computer initWithName:@"Bot" andSymbol: [symbol isEqual: @"O"] ? @"X" : @"O"];
+        self.computer = [self.computer initWithName:@"Bot"]; //andSymbol: [symbol isEqual: @"O"] ? @"X" : @"O"];
+        self.playerState = [symbol isEqual: @"O"] ? EnumCellStateO : EnumCellStateX;
+        self.botState = self.playerState == EnumCellStateX ? EnumCellStateO : EnumCellStateX;
     }
     
     return self;
@@ -35,7 +37,7 @@
 }
 
 -(void)makeMoveByBot {
-    [self.computer computerChoiceWithBoard:self.board];
+    //[self.computer computerChoiceWithBoard:self.board];
 }
 
 @end

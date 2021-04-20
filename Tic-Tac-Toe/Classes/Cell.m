@@ -37,5 +37,13 @@
     self.state = state;
 }
 
+-(NSArray*)getCordArray {
+    NSMutableArray* cell = [[NSMutableArray alloc] init];
+    [cell addObject:@(self.cordX)];
+    [cell addObject:@(self.cordY)];
+    
+    return cell;
+}
+
 
 @end

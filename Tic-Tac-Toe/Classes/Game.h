@@ -17,12 +17,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) Player *player;
 @property (strong, nonatomic) BotEasy* computer;
 @property (strong, nonatomic) Board* board;
+@property (nonatomic) EnumCellState playerState;
+@property (nonatomic) EnumCellState botState;
 
 -(instancetype)initWithPlayerName:(NSString*)playerName andPlayerSymbol:(NSString*)symbol;
 
 -(void)play;
 -(BOOL)checkWin;
--(void)makeMoveByPlayer:(NSString*)coordinates; //text by textField - call player makeMove
+-(void)makeMoveByPlayer:(NSString*)coordinates;
 -(void)makeMoveByBot;
 
 

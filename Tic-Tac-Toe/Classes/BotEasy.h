@@ -12,8 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BotEasy : Player
 
 -(instancetype)initWithName:(NSString*)playerName andSymbol:(NSString*)symbol;
--(void)makeMoveWithCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY andBoard:(Board*)board;
--(void)computerChoiceWithBoard:(Board*)board;
+-(void)computerChoiceWithBoard:(Board*)board andState:(EnumCellState)state;
 
 @end
 

@@ -83,7 +83,11 @@
     NSUInteger count = 1;
     for (NSUInteger i = 0; i < self.board.count; ++i) {
         if (count == self.columns) { // && self.board[i].getState != EnumCellStateEmpty
-            return self.board[i].getState;
+            if (self.board[i].getState != EnumCellStateEmpty) {
+                return self.board[i].getState;
+            }
+            count = 1;
+            continue;
         }
         
         if (self.board[i].getState != self.board[i + 1].getState) {
@@ -109,7 +113,7 @@
             }
         }
         
-        if (haveWin) { //&& self.board[i].getState != EnumCellStateEmpty
+        if (haveWin && self.board[i].getState != EnumCellStateEmpty) {
             return self.board[i].getState;
         }
         --count;
@@ -127,7 +131,7 @@
             break;
         }
     }
-    if (haveWin) {
+    if (haveWin && self.board[0].getState != EnumCellStateEmpty) {
         return self.board[0].getState;
     }
     haveWin = YES;
@@ -138,7 +142,7 @@
         }
     }
     
-    if (haveWin) {
+    if (haveWin && self.board[self.board.count].getState != EnumCellStateEmpty) {
         return self.board[self.board.count].getState;
     }
     
@@ -154,6 +158,16 @@
     }
     
     return YES;
+}
+
+-(NSArray*)freeCells {
+    NSMutableArray* freeCells = [[NSMutableArray alloc] init];
+    
+    for (NSUInteger i = 0; i < self.board.count; ++i) {
+        [freeCells addObject:self.board[i].getCordArray];
+    }
+    
+    return freeCells;
 }
 
 @end

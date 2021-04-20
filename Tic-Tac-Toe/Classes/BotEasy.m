@@ -12,21 +12,17 @@
 -(instancetype)initWithName:(NSString*)playerName andSymbol:(NSString*)symbol {
     if ([super init]) {
         self.playerName = playerName;
-        self.symbol = [symbol isEqual:@"O"] ? 0 : 1;
+        //self.symbol = [symbol isEqual:@"O"] ? 0 : 1;
     }
     
     return self;
 }
 
-
--(void)makeMoveWithCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY andBoard:(Board*)board {
-    //need?
-}
-
-
--(void)computerChoiceWithBoard:(Board*)board {
-    //int randPosition; // how to know for the free cells
-    
+-(void)computerChoiceWithBoard:(Board*)board andState:(EnumCellState)state{
+    NSArray* freeCells = board.freeCells;
+    NSUInteger botChoice = arc4random_uniform(freeCells.count);
+    NSArray* cell = freeCells[botChoice];
+    [super makeMoveWithCordX:(NSUInteger)cell[0] cordY:(NSUInteger)cell[1] board:board andState:state];
 }
 
 @end

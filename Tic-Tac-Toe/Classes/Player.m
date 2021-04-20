@@ -9,17 +9,17 @@
 
 @implementation Player
 
--(instancetype)initWithName:(NSString*)playerName andSymbol:(NSString*)symbol {
+-(instancetype)initWithName:(NSString*)playerName {//andSymbol:(NSString*)symbol {
     if ([super init]) {
         self.playerName = playerName;
-        self.symbol = [symbol isEqual:@"O"] ? 0 : 1;
+        //self.symbol = [symbol isEqual:@"O"] ? 0 : 1;
     }
     
     return self;
 }
 
--(void)makeMoveWithCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY andBoard:(Board*)board {
-    [board setMoveWithCordX:cordX cordY:cordY andSymbol:self.symbol];
+-(void)makeMoveWithCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY board:(Board*)board andState:(EnumCellState)state {
+    [board setMoveWithCordX:cordX cordY:cordY andState:state];
 }
 
 @end
