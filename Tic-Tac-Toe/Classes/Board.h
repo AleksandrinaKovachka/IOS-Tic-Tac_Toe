@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(instancetype)initWithRows:(NSUInteger)rows andColumns:(NSUInteger)columns;
 //-(NSMutableString*)display;
 -(NSString*)description;
--(void)setMoveWithIndex:(NSUInteger)cordX cordY:(NSUInteger)cordY andState:(EnumCellState)state;
+-(void)setMoveWithCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY andState:(EnumCellState)state;
 -(EnumCellState)haveWin;
 -(EnumCellState)checkHorizontal;
 -(EnumCellState)checkVertical;

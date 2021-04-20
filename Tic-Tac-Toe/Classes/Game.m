@@ -13,7 +13,7 @@
     if ([super init]) {
         self.player = [self.player initWithName:playerName]; //andSymbol:symbol];
         self.board = [self.board initWithRows:3 andColumns:3];
-        self.computer = [self.computer initWithName:@"Bot"]; //andSymbol: [symbol isEqual: @"O"] ? @"X" : @"O"];
+        self.bot = [self.bot initWithName:@"Bot"]; //andSymbol: [symbol isEqual: @"O"] ? @"X" : @"O"];
         self.playerState = [symbol isEqual: @"O"] ? EnumCellStateO : EnumCellStateX;
         self.botState = self.playerState == EnumCellStateX ? EnumCellStateO : EnumCellStateX;
     }
@@ -26,18 +26,30 @@
 
 
 -(BOOL)checkWin {
-    return self.board.haveWin;
-}
-
-
--(void)makeMoveByPlayer:(NSString*)coordinates {
-    //"1 0"
-    //NSUInteger cordX = [coordinates substringWithRange:1];
+    if (self.board.haveWin != EnumCellStateEmpty) {
+        return YES;
+    }
     
+    return NO;
 }
 
--(void)makeMoveByBot {
-    //[self.computer computerChoiceWithBoard:self.board];
+-(NSString*)getWinner {
+    EnumCellState winState = self.board.haveWin;
+    if (winState == self.playerState) {
+        return self.player.playerName;
+    }
+    
+    return self.bot.playerName;
 }
+
+-(void)makeMovebyPlayer:(NSString *)coordinatesString
+{
+    NSArray<NSString *> *coordinates = [coordinatesString componentsSeparatedByString:@" "];
+    [self.player makeMoveWithCordX:(NSUInteger)coordinates[0] cordY:(NSUInteger)coordinates[1] board:self.board andState:self.playerState];
+}
+
+/*-(void)makeMoveByBot {
+    [self.bot computerChoiceWithBoard:self.board andState:self.botState];
+}*/
 
 @end

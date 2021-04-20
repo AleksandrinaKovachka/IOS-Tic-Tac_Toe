@@ -15,18 +15,18 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Game : NSObject
 
 @property (strong, nonatomic) Player *player;
-@property (strong, nonatomic) BotEasy* computer;
+@property (strong, nonatomic) BotEasy* bot;
 @property (strong, nonatomic) Board* board;
 @property (nonatomic) EnumCellState playerState;
 @property (nonatomic) EnumCellState botState;
 
 -(instancetype)initWithPlayerName:(NSString*)playerName andPlayerSymbol:(NSString*)symbol;
 
--(void)play;
+-(void)play;
 -(BOOL)checkWin;
--(void)makeMoveByPlayer:(NSString*)coordinates;
--(void)makeMoveByBot;
-
+-(void)makeMoveByPlayer:(NSString*)coordinatesString;
+-(void)makeMoveByBot;
+-(NSString*)getWinner;
 
 
 @end

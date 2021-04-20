@@ -64,7 +64,7 @@
 
 -(void)setMoveWithCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY andState:(EnumCellState)state {
     NSUInteger index = (cordX * self.columns) + cordY;
-    [self.board[index] setCordX:cordX cordY:cordY andState:state];
+    [self.board[index] setCordX:cordX cordY:cordY andState:state];
 }
 
 -(EnumCellState)haveWin {
