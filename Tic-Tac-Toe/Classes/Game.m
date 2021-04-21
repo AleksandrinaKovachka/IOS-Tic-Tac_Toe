@@ -27,7 +27,7 @@
     if (self.checkWin) {
         return self.getWinner;
     }
-    else if (self.board.checkIsFull){
+    else if (self.board.isFull){
         return @"The game is over!";
     }
     
@@ -36,7 +36,7 @@
     if (self.checkWin) {
         return self.getWinner;
     }
-    else if (self.board.checkIsFull){
+    else if (self.board.isFull){
         return @"The game is over!";
     }
     
@@ -66,6 +66,7 @@
     [self.player makeMoveWithCordX:[coordinates[0] intValue] cordY:[coordinates[1] intValue] board:self.board andState:self.playerState];
 }
 
+// Code Review: No.
 -(void)makeMoveByBot {
     [self.bot computerChoiceWithBoard:self.board andState:self.botState];
 }

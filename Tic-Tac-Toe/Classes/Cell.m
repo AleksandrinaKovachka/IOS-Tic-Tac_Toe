@@ -7,42 +7,35 @@
 
 #import "Cell.h"
 
+// Code Review: always prefer automatically synthesized properties to manually creating
+@interface Cell ()
+
+@property (assign) int x;
+@property (assign) int y;
+
+@end
+
+
 @implementation Cell
 
--(instancetype)initWithcordX:(NSUInteger)cordX andCordY:(NSUInteger)cordY {
+-(instancetype)initWithX:(int)x andY:(int)y {
     if ([super init]) {
         self.state = EnumCellStateEmpty;
-        self.cordX = cordX;
-        self.cordY = cordY;
+        self.x = x;
+        self.y = y;
     }
     
     return self;
 }
 
--(NSUInteger)getCordX {
-    return self.cordX;
-}
-
--(NSUInteger)getCordY {
-    return self.cordY;
-}
-
--(EnumCellState)getState {
-    return self.state;
-}
-
--(void)setCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY andState:(EnumCellState)state {
-    self.cordX = cordX;
-    self.cordY = cordY;
-    self.state = state;
-}
-
--(NSArray*)getCordArray {
-    NSMutableArray* cell = [[NSMutableArray alloc] init];
-    [cell addObject:@(self.cordX)];
-    [cell addObject:@(self.cordY)];
+// Code Review: always prefer explicitly typed collections to generic
+-(NSArray<NSNumber *> *)coordinates {
+    // Code Review: always name your variables properly
+    NSMutableArray<NSNumber *> *coordinatesArray = [[NSMutableArray alloc] init];
+    [coordinatesArray addObject:@(self.x)];
+    [coordinatesArray addObject:@(self.y)];
     
-    return cell;
+    return coordinatesArray;
 }
 
 

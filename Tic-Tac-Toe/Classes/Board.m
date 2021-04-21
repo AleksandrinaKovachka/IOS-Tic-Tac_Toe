@@ -9,22 +9,22 @@
 
 @interface Board ()
 
-@property (strong, nonatomic) NSMutableArray<Cell*>* board;
+@property (strong, nonatomic) NSMutableArray<Cell *> *board;
 
 @end
 
 @implementation Board
 
--(instancetype)initWithRows:(NSUInteger)rows andColumns:(NSUInteger)columns {
+-(instancetype)initWithRows:(int)rows andColumns:(int)columns {
     if ([super init]) {
         self.rows = rows;
         self.columns = columns;
         self.board = [[NSMutableArray alloc] init];
         
-        for (NSUInteger i = 0; i < rows; ++i) {
+        for (int i = 0; i < rows; ++i) {
             
-            for (NSUInteger j = 0; j < columns; ++j) {
-                [self.board addObject:[[Cell alloc] initWithcordX:i andCordY:j]];
+            for (int j = 0; j < columns; ++j) {
+                [self.board addObject:[[Cell alloc] initWithX:i andY:j]];
             }
         }
         
@@ -33,26 +33,28 @@
     return self;
 }
 
--(NSString*)description {
+-(NSString *)description {
     NSMutableString* boardToString = [[NSMutableString alloc] init];
-    NSUInteger count = 0;
-    for (NSUInteger i = 0; i < self.board.count; ++i) {
+    int count = 0;
+    for (int i = 0; i < self.board.count; ++i) {
         if(count == self.columns) {
             [boardToString appendString:@"\n"];
             count = 0;
         }
-        [boardToString appendString:[NSString stringWithFormat:@"%d ", self.board[i].getState]];
+        [boardToString appendString:[NSString stringWithFormat:@"%d ", self.board[i].state]];
         ++count;
     }
     NSLog(@"%@", [NSString stringWithString:boardToString]);
     return [NSString stringWithString:boardToString];
 }
 
--(void)setMoveWithCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY andState:(EnumCellState)state {
-    NSUInteger index = (cordX * self.columns) + cordY;
-    [self.board[index] setCordX:cordX cordY:cordY andState:state];
+-(void)setMoveWithCordX:(int)cordX cordY:(int)cordY andState:(EnumCellState)state {
+    int index = (cordX * self.columns) + cordY;
+    Cell *cell = self.board[index];
+    cell.state = state;
 }
 
+// Code Review: why return EnumCellState?!
 -(EnumCellState)haveWin {
     if (self.checkHorizontal != EnumCellStateEmpty) {
         return self.checkHorizontal;
@@ -65,18 +67,19 @@
     return EnumCellStateEmpty;
 }
 
+// Code Review: why return EnumCellState?!
 -(EnumCellState)checkHorizontal {
-    NSUInteger count = 1;
-    for (NSUInteger i = 0; i < self.board.count; ++i) {
-        if (count == self.columns) { // && self.board[i].getState != EnumCellStateEmpty
-            if (self.board[i].getState != EnumCellStateEmpty) {
-                return self.board[i].getState;
+    int count = 1;
+    for (int i = 0; i < self.board.count; ++i) {
+        if (count == self.columns) { // && self.board[i].state != EnumCellStateEmpty
+            if (self.board[i].state != EnumCellStateEmpty) {
+                return self.board[i].state;
             }
             count = 1;
             continue;
         }
         
-        if (self.board[i].getState != self.board[i + 1].getState) {
+        if (self.board[i].state != self.board[i + 1].state) {
             i += self.columns - count; //correct
             count = 1;
             continue;
@@ -87,20 +90,21 @@
     return EnumCellStateEmpty;
 }
 
+// Code Review: why return EnumCellState?!
 -(EnumCellState)checkVertical {
     BOOL haveWin = YES;
-    NSUInteger count = self.columns - 1;
-    for (NSUInteger i = 0; i < self.columns; ++i) {
+    int count = self.columns - 1;
+    for (int i = 0; i < self.columns; ++i) {
         
-        for (NSUInteger j = i; j < self.board.count - count - 1; j += self.columns) {
-            if (self.board[j].getState != self.board[j + self.columns].getState) {
+        for (int j = i; j < self.board.count - count - 1; j += self.columns) {
+            if (self.board[j].state != self.board[j + self.columns].state) {
                 haveWin = NO;
                 break;
             }
         }
         
-        if (haveWin && self.board[i].getState != EnumCellStateEmpty) {
-            return self.board[i].getState;
+        if (haveWin && self.board[i].state != EnumCellStateEmpty) {
+            return self.board[i].state;
         }
         --count;
     }
@@ -108,37 +112,37 @@
     return EnumCellStateEmpty;
 }
 
-
+// Code Review: why return EnumCellState?!
 -(EnumCellState)checkDiagonal {
     BOOL haveWin = YES;
-    for (NSUInteger i = 0; i < self.board.count - 1; i += self.columns + 1) {
-        if (self.board[i].getState != self.board[i + self.columns + 1].getState) {
+    for (int i = 0; i < self.board.count - 1; i += self.columns + 1) {
+        if (self.board[i].state != self.board[i + self.columns + 1].state) {
             haveWin = NO;
             break;
         }
     }
-    if (haveWin && self.board[0].getState != EnumCellStateEmpty) {
-        return self.board[0].getState;
+    if (haveWin && self.board[0].state != EnumCellStateEmpty) {
+        return self.board[0].state;
     }
     haveWin = YES;
-    for (NSUInteger i = self.columns - 1; i < self.board.count - self.columns; i += self.columns - 1) {
-        if (self.board[i].getState != self.board[i + self.columns - 1].getState) {
+    for (int i = self.columns - 1; i < self.board.count - self.columns; i += self.columns - 1) {
+        if (self.board[i].state != self.board[i + self.columns - 1].state) {
             haveWin = NO;
             break;
         }
     }
     
-    if (haveWin && self.board[self.board.count - 1].getState != EnumCellStateEmpty) {
-        return self.board[self.board.count - 1].getState;
+    if (haveWin && self.board[self.board.count - 1].state != EnumCellStateEmpty) {
+        return self.board[self.board.count - 1].state;
     }
     
     return EnumCellStateEmpty;
 }
 
 
--(BOOL)checkIsFull {
-    for (NSUInteger i = 0; i < self.board.count; ++i) {
-        if(self.board[i].getState == EnumCellStateEmpty) {
+-(BOOL)isFull {
+    for (int i = 0; i < self.board.count; ++i) {
+        if(self.board[i].state == EnumCellStateEmpty) {
             return NO;
         }
     }
@@ -146,16 +150,16 @@
     return YES;
 }
 
--(NSArray*)freeCells {
-    NSMutableArray* freeCells = [[NSMutableArray alloc] init];
+-(NSArray<NSArray<NSNumber *> *> *)freeCellCoordinates {
+    NSMutableArray<NSArray<NSNumber *> *> *coordinates = [[NSMutableArray alloc] init];
     
-    for (NSUInteger i = 0; i < self.board.count; ++i) {
-        if (self.board[i].getState == EnumCellStateEmpty) {
-            [freeCells addObject:self.board[i].getCordArray];
+    for (int i = 0; i < self.board.count; ++i) {
+        if (self.board[i].state == EnumCellStateEmpty) {
+            [coordinates addObject:self.board[i].coordinates];
         }
     }
     
-    return freeCells;
+    return coordinates;
 }
 
 @end

@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(BOOL)checkWin;
 -(NSString*)getWinner;
 -(void)makeMoveByPlayer:(NSString*)coordinatesString;
+// Code Review: the game should not care about whether it's a real player or a bot making the move
 -(void)makeMoveByBot;
 
 

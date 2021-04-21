@@ -17,7 +17,7 @@
     return self;
 }
 
--(void)makeMoveWithCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY board:(Board*)board andState:(EnumCellState)state {
+-(void)makeMoveWithCordX:(int)cordX cordY:(int)cordY board:(Board*)board andState:(EnumCellState)state {
     [board setMoveWithCordX:cordX cordY:cordY andState:state];
 }
 

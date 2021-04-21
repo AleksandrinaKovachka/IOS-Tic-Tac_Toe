@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString* playerName;
 
 -(instancetype)initWithName:(NSString*)playerName;
--(void)makeMoveWithCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY board:(Board*)board andState:(EnumCellState)state;
+-(void)makeMoveWithCordX:(int)cordX cordY:(int)cordY board:(Board*)board andState:(EnumCellState)state;
 
 @end
 
