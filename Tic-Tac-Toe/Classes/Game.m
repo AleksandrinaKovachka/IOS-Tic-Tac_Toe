@@ -11,9 +11,9 @@
 
 -(instancetype)initWithPlayerName:(NSString*)playerName andPlayerSymbol:(NSString*)symbol {
     if ([super init]) {
-        self.player = [self.player initWithName:playerName];
-        self.board = [self.board initWithRows:3 andColumns:3];
-        self.bot = [self.bot initWithName:@"Bot"];
+        self.player = [[Player alloc] initWithName:playerName];
+        self.board = [[Board alloc] initWithRows:3 andColumns:3];
+        self.bot = [[BotEasy alloc] initWithName:@"Bot"];
         self.playerState = [symbol isEqual: @"O"] ? EnumCellStateO : EnumCellStateX;
         self.botState = self.playerState == EnumCellStateX ? EnumCellStateO : EnumCellStateX;
     }
@@ -23,13 +23,23 @@
 
 -(NSString*)playWithUserChoice:(NSString*)userChoice {
     [self makeMoveByPlayer:userChoice];
+    
     if (self.checkWin) {
         return self.getWinner;
     }
+    else if (self.board.checkIsFull){
+        return @"The game is over!";
+    }
+    
     [self makeMoveByBot];
+    
     if (self.checkWin) {
         return self.getWinner;
     }
+    else if (self.board.checkIsFull){
+        return @"The game is over!";
+    }
+    
     return self.board.description;
 }
 
@@ -53,7 +63,7 @@
 -(void)makeMoveByPlayer:(NSString*)coordinatesString
 {
     NSArray<NSString *> *coordinates = [coordinatesString componentsSeparatedByString:@" "];
-    [self.player makeMoveWithCordX:(NSUInteger)coordinates[0] cordY:(NSUInteger)coordinates[1] board:self.board andState:self.playerState];
+    [self.player makeMoveWithCordX:[coordinates[0] intValue] cordY:[coordinates[1] intValue] board:self.board andState:self.playerState];
 }
 
 -(void)makeMoveByBot {

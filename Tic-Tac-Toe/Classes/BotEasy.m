@@ -21,7 +21,7 @@
     NSArray* freeCells = board.freeCells;
     NSUInteger botChoice = arc4random_uniform(freeCells.count);
     NSArray* cell = freeCells[botChoice];
-    [super makeMoveWithCordX:(NSUInteger)cell[0] cordY:(NSUInteger)cell[1] board:board andState:state];
+    [super makeMoveWithCordX:[cell[0] intValue] cordY:[cell[1] intValue] board:board andState:state];
 }
 
 @end

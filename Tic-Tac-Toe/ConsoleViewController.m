@@ -16,6 +16,11 @@
 
 @implementation ConsoleViewController
 
+/*-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.boardConsoleLabel.text = self.game.board.description;
+}*/
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.game = [[Game alloc] initWithPlayerName:@"Pesho" andPlayerSymbol:@"X"];

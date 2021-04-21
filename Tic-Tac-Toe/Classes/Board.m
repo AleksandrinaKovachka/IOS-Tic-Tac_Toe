@@ -35,7 +35,7 @@
 
 -(NSString*)description {
     NSMutableString* boardToString = [[NSMutableString alloc] init];
-    NSUInteger count = 1;
+    NSUInteger count = 0;
     for (NSUInteger i = 0; i < self.board.count; ++i) {
         if(count == self.columns) {
             [boardToString appendString:@"\n"];
@@ -77,7 +77,7 @@
         }
         
         if (self.board[i].getState != self.board[i + 1].getState) {
-            i += self.columns - count;
+            i += self.columns - count; //correct
             count = 1;
             continue;
         }
@@ -92,7 +92,7 @@
     NSUInteger count = self.columns - 1;
     for (NSUInteger i = 0; i < self.columns; ++i) {
         
-        for (NSUInteger j = i; j < self.board.count - count; j += self.columns) {
+        for (NSUInteger j = i; j < self.board.count - count - 1; j += self.columns) {
             if (self.board[j].getState != self.board[j + self.columns].getState) {
                 haveWin = NO;
                 break;
@@ -111,7 +111,7 @@
 
 -(EnumCellState)checkDiagonal {
     BOOL haveWin = YES;
-    for (NSUInteger i = 0; i < self.board.count; i += self.columns + 1) {
+    for (NSUInteger i = 0; i < self.board.count - 1; i += self.columns + 1) {
         if (self.board[i].getState != self.board[i + self.columns + 1].getState) {
             haveWin = NO;
             break;
@@ -121,15 +121,15 @@
         return self.board[0].getState;
     }
     haveWin = YES;
-    for (NSUInteger i = self.columns - 1; i < self.board.count; i += self.columns - 1) {
+    for (NSUInteger i = self.columns - 1; i < self.board.count - self.columns; i += self.columns - 1) {
         if (self.board[i].getState != self.board[i + self.columns - 1].getState) {
             haveWin = NO;
             break;
         }
     }
     
-    if (haveWin && self.board[self.board.count].getState != EnumCellStateEmpty) {
-        return self.board[self.board.count].getState;
+    if (haveWin && self.board[self.board.count - 1].getState != EnumCellStateEmpty) {
+        return self.board[self.board.count - 1].getState;
     }
     
     return EnumCellStateEmpty;
@@ -150,7 +150,9 @@
     NSMutableArray* freeCells = [[NSMutableArray alloc] init];
     
     for (NSUInteger i = 0; i < self.board.count; ++i) {
-        [freeCells addObject:self.board[i].getCordArray];
+        if (self.board[i].getState == EnumCellStateEmpty) {
+            [freeCells addObject:self.board[i].getCordArray];
+        }
     }
     
     return freeCells;
