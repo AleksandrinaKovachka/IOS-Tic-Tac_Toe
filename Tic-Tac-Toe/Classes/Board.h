@@ -16,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSUInteger columns;
 
 -(instancetype)initWithRows:(NSUInteger)rows andColumns:(NSUInteger)columns;
-//-(NSMutableString*)display;
 -(NSString*)description;
 -(void)setMoveWithCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY andState:(EnumCellState)state;
 -(EnumCellState)haveWin;

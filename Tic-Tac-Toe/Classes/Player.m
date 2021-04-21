@@ -9,10 +9,9 @@
 
 @implementation Player
 
--(instancetype)initWithName:(NSString*)playerName {//andSymbol:(NSString*)symbol {
+-(instancetype)initWithName:(NSString*)playerName {
     if ([super init]) {
         self.playerName = playerName;
-        //self.symbol = [symbol isEqual:@"O"] ? 0 : 1;
     }
     
     return self;

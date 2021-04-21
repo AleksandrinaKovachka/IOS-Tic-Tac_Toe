@@ -22,11 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(instancetype)initWithPlayerName:(NSString*)playerName andPlayerSymbol:(NSString*)symbol;
 
--(void)play;
+-(NSString*)playWithUserChoice:(NSString*)userChoice;
 -(BOOL)checkWin;
+-(NSString*)getWinner;
 -(void)makeMoveByPlayer:(NSString*)coordinatesString;
 -(void)makeMoveByBot;
--(NSString*)getWinner;
 
 
 @end

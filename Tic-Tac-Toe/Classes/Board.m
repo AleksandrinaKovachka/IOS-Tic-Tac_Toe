@@ -33,20 +33,6 @@
     return self;
 }
 
-/*-(NSMutableString*)display {
-    NSMutableString* boardToString = [[NSMutableString alloc] initWithCapacity:(self.columns * self.rows)];
-    for (NSUInteger i = 0; i < self.rows; ++i) {
-        NSMutableString* columnToString = [[NSMutableString alloc] initWithCapacity:self.columns];
-        for (NSUInteger j = 0; j < self.columns; ++j) {
-            NSString* element = [NSString stringWithFormat:@"%@ ", self.board[i][j]];
-            [columnToString appendString:element];
-        }
-        [boardToString appendString:columnToString];
-    }
-    
-    return boardToString;
-}*/
-
 -(NSString*)description {
     NSMutableString* boardToString = [[NSMutableString alloc] init];
     NSUInteger count = 1;
@@ -58,8 +44,8 @@
         [boardToString appendString:[NSString stringWithFormat:@"%d ", self.board[i].getState]];
         ++count;
     }
-    
-    return boardToString;
+    NSLog(@"%@", [NSString stringWithString:boardToString]);
+    return [NSString stringWithString:boardToString];
 }
 
 -(void)setMoveWithCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY andState:(EnumCellState)state {

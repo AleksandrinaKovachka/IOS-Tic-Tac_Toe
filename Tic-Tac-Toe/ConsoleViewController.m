@@ -6,8 +6,11 @@
 //
 
 #import "ConsoleViewController.h"
+#import "Game.h"
 
 @interface ConsoleViewController ()
+
+@property (strong, nonatomic) Game* game;
 
 @end
 
@@ -15,8 +18,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.game = [[Game alloc] initWithPlayerName:@"Pesho" andPlayerSymbol:@"X"];
+    self.boardConsoleLabel.text = self.game.board.description;
 }
+
+- (IBAction)onClickSubmit:(id)sender {
+    self.boardConsoleLabel.text = [self.game playWithUserChoice:self.userChoice.text];
+}
+
 
 /*
 #pragma mark - Navigation

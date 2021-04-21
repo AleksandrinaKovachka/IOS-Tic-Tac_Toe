@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -8,39 +8,63 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Console View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ConsoleViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Board" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bsy-Xz-e6u">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Board" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bsy-Xz-e6u">
                                 <rect key="frame" x="45" y="81" width="325" height="291"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="325" id="WJb-Bg-Q0t" userLabel="width = 150"/>
+                                    <constraint firstAttribute="height" constant="291" id="Wms-Mr-viD" userLabel="height = 150"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="systemGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dY4-wo-Yrw">
-                                <rect key="frame" x="45" y="422" width="325" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dY4-wo-Yrw">
+                                <rect key="frame" x="45" y="422" width="211" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="211" id="kxO-jj-yuw"/>
+                                    <constraint firstAttribute="height" constant="34" id="pTU-Jq-dGD"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bJ5-Xq-KMz">
-                                <rect key="frame" x="317" y="519" width="63" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bJ5-Xq-KMz">
+                                <rect key="frame" x="176" y="500" width="63" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="DIP-rN-fGH"/>
+                                    <constraint firstAttribute="width" constant="63" id="KbY-RS-ADZ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" systemColor="systemBackgroundColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="onClickSubmit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jYu-TT-e3l"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Bsy-Xz-e6u" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="37" id="WdN-Mu-RPF"/>
+                            <constraint firstItem="dY4-wo-Yrw" firstAttribute="top" secondItem="Bsy-Xz-e6u" secondAttribute="bottom" constant="50" id="dJ1-Lm-F91"/>
+                            <constraint firstItem="bJ5-Xq-KMz" firstAttribute="top" secondItem="dY4-wo-Yrw" secondAttribute="bottom" constant="44" id="fbd-tM-wHK"/>
+                            <constraint firstItem="dY4-wo-Yrw" firstAttribute="trailing" secondItem="Bsy-Xz-e6u" secondAttribute="trailing" constant="-114" id="fpW-o9-evk"/>
+                            <constraint firstItem="Bsy-Xz-e6u" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="45" id="sqD-kH-A1s"/>
+                            <constraint firstItem="bJ5-Xq-KMz" firstAttribute="leading" secondItem="dY4-wo-Yrw" secondAttribute="trailing" constant="-80" id="zoa-mW-Gql"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="boardConsoleLabel" destination="Bsy-Xz-e6u" id="0IF-oV-zxb"/>
+                        <outlet property="userChoice" destination="dY4-wo-Yrw" id="cgX-Z5-Fqw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

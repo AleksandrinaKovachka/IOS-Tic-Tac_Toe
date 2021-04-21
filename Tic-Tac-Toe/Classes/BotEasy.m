@@ -12,7 +12,6 @@
 -(instancetype)initWithName:(NSString*)playerName andSymbol:(NSString*)symbol {
     if ([super init]) {
         self.playerName = playerName;
-        //self.symbol = [symbol isEqual:@"O"] ? 0 : 1;
     }
     
     return self;
