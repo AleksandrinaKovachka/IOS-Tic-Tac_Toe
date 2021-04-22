@@ -12,18 +12,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Board : NSObject
 
-@property (nonatomic) NSUInteger rows;
-@property (nonatomic) NSUInteger columns;
+// Code Review: use 'assign' for non-pointer properties
+@property (assign) int rows;
+@property (assign) int columns;
 
--(instancetype)initWithRows:(NSUInteger)rows andColumns:(NSUInteger)columns;
+-(instancetype)initWithRows:(int)rows andColumns:(int)columns;
 -(NSString*)description;
--(void)setMoveWithCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY andState:(EnumCellState)state;
--(EnumCellState)haveWin;
--(EnumCellState)checkHorizontal;
+-(void)setMoveWithCordX:(int)cordX cordY:(int)cordY andState:(EnumCellState)state;
+-(EnumCellState)haveWin; // Code Review: this is not for the 'Board' to decide
+-(EnumCellState)checkHorizontal; // Code Review: check what exactly?
 -(EnumCellState)checkVertical;
 -(EnumCellState)checkDiagonal;
--(BOOL)checkIsFull;
--(NSArray*)freeCells;
+-(BOOL)isFull;
+-(NSArray*)freeCellCoordinates;
 
 
 @end

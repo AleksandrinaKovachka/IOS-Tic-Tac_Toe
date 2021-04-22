@@ -17,16 +17,17 @@ typedef enum {
 
 @interface Cell : NSObject
 
-@property (nonatomic) EnumCellState state;
-@property (nonatomic) NSUInteger cordX;
-@property (nonatomic) NSUInteger cordY;
+@property (assign) EnumCellState state;
+// Code Review: no need to be extra specific with names when the context can be guessed by the class name
+@property (readonly) int x;
+@property (readonly) int y;
 
--(instancetype)initWithcordX:(NSUInteger)cordX andCordY:(NSUInteger)cordY;
--(NSUInteger)getCordX;
--(NSUInteger)getCordY;
--(EnumCellState)getState;
--(void)setCordX:(NSUInteger)cordX cordY:(NSUInteger)cordY andState:(EnumCellState)state;
--(NSArray*)getCordArray;
+// Code Review: use 'long' only when absolutely necessary
+-(instancetype)initWithX:(int)x andY:(int)y;
+
+// Code Review: always prefer explicitly typed collections to generic ones
+// Code Review: do not prefix methods and properties with 'get'
+-(NSArray<NSNumber *> *)coordinates;
 
 @end
 

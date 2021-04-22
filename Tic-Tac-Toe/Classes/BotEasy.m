@@ -18,9 +18,9 @@
 }
 
 -(void)computerChoiceWithBoard:(Board*)board andState:(EnumCellState)state{
-    NSArray* freeCells = board.freeCells;
-    NSUInteger botChoice = arc4random_uniform(freeCells.count);
-    NSArray* cell = freeCells[botChoice];
+    NSArray* freeCellCoordinates = board.freeCellCoordinates;
+    int botChoice = arc4random_uniform(freeCellCoordinates.count);
+    NSArray* cell = freeCellCoordinates[botChoice];
     [super makeMoveWithCordX:[cell[0] intValue] cordY:[cell[1] intValue] board:board andState:state];
 }
 
