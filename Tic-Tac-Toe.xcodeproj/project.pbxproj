@@ -47,6 +47,7 @@
 		8EBBEF7C262D950600F60244 /* BotEasy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BotEasy.m; sourceTree = "<group>"; };
 		8EBBEF85262EAFFB00F60244 /* Cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
 		8EBBEF86262EAFFB00F60244 /* Cell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
+		8EBBEF932631792200F60244 /* Protocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Protocols.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +101,7 @@
 		8EBBEF64262990C200F60244 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8EBBEF932631792200F60244 /* Protocols.h */,
 				8EBBEF65262990DD00F60244 /* Player.h */,
 				8EBBEF66262990DD00F60244 /* Player.m */,
 				8EBBEF69262990F500F60244 /* Board.h */,

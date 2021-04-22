@@ -9,19 +9,22 @@
 
 @implementation BotEasy
 
--(instancetype)initWithName:(NSString*)playerName andSymbol:(NSString*)symbol {
+-(instancetype)initWithName:(NSString*)playerName andDelegate:(id<InputDelegate>)delegate
+{
     if ([super init]) {
         self.playerName = playerName;
+        self.inputDelegate = delegate;
     }
     
     return self;
 }
 
--(void)computerChoiceWithBoard:(Board*)board andState:(EnumCellState)state{
-    NSArray* freeCellCoordinates = board.freeCellCoordinates;
-    int botChoice = arc4random_uniform(freeCellCoordinates.count);
-    NSArray* cell = freeCellCoordinates[botChoice];
-    [super makeMoveWithCordX:[cell[0] intValue] cordY:[cell[1] intValue] board:board andState:state];
+-(NSArray<NSNumber *> *)makeMove
+{
+    NSArray *freeCellCoordinates = self.inputDelegate.moveCoordinates;
+    int botChoice = arc4random_uniform((uint32_t)freeCellCoordinates.count);
+    NSArray<NSNumber *> *coordinates = freeCellCoordinates[botChoice];
+    return coordinates;
 }
 
 @end

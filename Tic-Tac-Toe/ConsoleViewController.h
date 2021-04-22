@@ -6,10 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Protocols.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ConsoleViewController : UIViewController
+
+@interface ConsoleViewController : UIViewController<InputDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *boardConsoleLabel;
 @property (weak, nonatomic) IBOutlet UITextField *userChoice;

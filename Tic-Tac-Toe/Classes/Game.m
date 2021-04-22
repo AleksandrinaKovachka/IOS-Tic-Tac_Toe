@@ -7,68 +7,82 @@
 
 #import "Game.h"
 
+@interface Game()
+
+@property (strong, nonatomic) Player *playerOne;
+@property (strong, nonatomic) Player *playerTwo;
+@property (strong, nonatomic) Player *currentPlayer;
+@property (strong, nonatomic) Player *botPlayer;
+@property (weak, nonatomic) id<OutputDelegate> outputDelegate;
+
+@end
+
 @implementation Game
 
--(instancetype)initWithPlayerName:(NSString*)playerName andPlayerSymbol:(NSString*)symbol {
+-(instancetype)initWithPlayerName:(NSString*)playerName inputDelegate:(id<InputDelegate>)iDelegate andOutputDelegate:(id<OutputDelegate>)oDelegate
+{
     if ([super init]) {
-        self.player = [[Player alloc] initWithName:playerName];
         self.board = [[Board alloc] initWithRows:3 andColumns:3];
-        self.bot = [[BotEasy alloc] initWithName:@"Bot"];
-        self.playerState = [symbol isEqual: @"O"] ? EnumCellStateO : EnumCellStateX;
-        self.botState = self.playerState == EnumCellStateX ? EnumCellStateO : EnumCellStateX;
+        
+        self.playerOne = [[Player alloc] initWithName:playerName sigil:@"X" andDelegate:iDelegate];
+        self.playerTwo = [[BotEasy alloc] initWithName:@"Bot" sigil:@"O" andDelegate:self.board];
+        self.botPlayer = self.playerTwo;
+        self.currentPlayer = self.playerOne;
+        self.outputDelegate = oDelegate;
+        
     }
     
     return self;
 }
 
--(NSString*)playWithUserChoice:(NSString*)userChoice {
-    [self makeMoveByPlayer:userChoice];
+-(void)makeMove
+{
+    EnumCellState state = EnumCellStateEmpty;
+    NSArray<NSNumber *> *coords = [self.currentPlayer makeMove];
     
-    if (self.checkWin) {
-        return self.getWinner;
+    if (self.currentPlayer == self.playerOne)
+    {
+        state = EnumCellStateX;
+        self.currentPlayer = self.playerTwo;
     }
-    else if (self.board.isFull){
-        return @"The game is over!";
-    }
-    
-    [self makeMoveByBot];
-    
-    if (self.checkWin) {
-        return self.getWinner;
-    }
-    else if (self.board.isFull){
-        return @"The game is over!";
+    else
+    {
+        state = EnumCellStateO;
+        self.currentPlayer = self.playerOne;
     }
     
-    return self.board.description;
+    [self.board setMoveWithCordX:coords[0].intValue cordY:coords[1].intValue andState:state];
+    
+    //isFull haveWinner
+    if (self.board.isFull || self.checkWin)
+    {
+        [self.outputDelegate drawGameOver];
+        return;
+    }
+    
+    if (self.currentPlayer == self.botPlayer)
+    {
+        [self makeMove];
+    }
+    
+    [self.outputDelegate draw];
 }
 
 -(BOOL)checkWin {
-    if (self.board.haveWin != EnumCellStateEmpty) {
+    if (self.board.hasNoGapsRow || self.board.hasNoGapsColumn || self.board.hasNoGapsDiagonal) {
         return YES;
     }
     
     return NO;
 }
 
--(NSString*)getWinner {
-    EnumCellState winState = self.board.haveWin;
-    if (winState == self.playerState) {
-        return self.player.playerName;
-    }
-    
-    return self.bot.playerName;
-}
-
--(void)makeMoveByPlayer:(NSString*)coordinatesString
+-(NSString*)gameOver
 {
-    NSArray<NSString *> *coordinates = [coordinatesString componentsSeparatedByString:@" "];
-    [self.player makeMoveWithCordX:[coordinates[0] intValue] cordY:[coordinates[1] intValue] board:self.board andState:self.playerState];
+    if (self.board.isFull) {
+        return @"Game is over!";
+    }
+    return self.currentPlayer.playerName;
 }
 
-// Code Review: No.
--(void)makeMoveByBot {
-    [self.bot computerChoiceWithBoard:self.board andState:self.botState];
-}
 
 @end

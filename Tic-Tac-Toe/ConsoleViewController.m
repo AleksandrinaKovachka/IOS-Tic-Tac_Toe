@@ -23,14 +23,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.game = [[Game alloc] initWithPlayerName:@"Pesho" andPlayerSymbol:@"X"];
+    self.game = [[Game alloc] initWithPlayerName:@"Pesho" inputDelegate:self andOutputDelegate:self];
     self.boardConsoleLabel.text = self.game.board.description;
 }
 
 - (IBAction)onClickSubmit:(id)sender {
-    self.boardConsoleLabel.text = [self.game playWithUserChoice:self.userChoice.text];
+    [self.game makeMove];
 }
 
+// MARK: - InputDelegate
+- (NSArray<NSArray<NSNumber *> *> *)moveCoordinates
+{
+    NSArray<NSString *> *coordinatesText = [self.userChoice.text componentsSeparatedByString:@" "];
+    NSArray<NSNumber *> *coordinates = @[@(coordinatesText[0].intValue), @(coordinatesText[1].intValue)];
+    return @[coordinates];
+}
+
+// MARK: - OutputDelegate
+
+-(void)draw
+{
+    self.boardConsoleLabel.text = [NSString stringWithFormat:@"%@", self.game.board];
+}
+
+-(void)drawGameOver
+{
+    self.boardConsoleLabel.text = self.game.gameOver;
+}
 
 /*
 #pragma mark - Navigation

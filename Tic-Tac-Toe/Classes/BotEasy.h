@@ -11,10 +11,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BotEasy : Player
 
--(instancetype)initWithName:(NSString*)playerName andSymbol:(NSString*)symbol;
-// Code Review: should not be exposed
--(void)computerChoiceWithBoard:(Board*)board andState:(EnumCellState)state;
-
 @end
 
 NS_ASSUME_NONNULL_END

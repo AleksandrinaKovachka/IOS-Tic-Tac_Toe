@@ -6,16 +6,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Board.h"
+#import "Protocols.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Player : NSObject
 
 @property (strong, nonatomic) NSString* playerName;
+@property (weak, nonatomic) id<InputDelegate> inputDelegate;
 
--(instancetype)initWithName:(NSString*)playerName;
--(void)makeMoveWithCordX:(int)cordX cordY:(int)cordY board:(Board*)board andState:(EnumCellState)state;
+-(instancetype)initWithName:(NSString*)playerName sigil:(NSString *)sigil andDelegate:(id<InputDelegate>)delegate;
+-(NSArray<NSNumber *> *)makeMove;
 
 @end
 

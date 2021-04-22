@@ -9,25 +9,19 @@
 #import "Player.h"
 #import "Board.h"
 #import "BotEasy.h"
+#import "Protocols.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Game : NSObject
 
-@property (strong, nonatomic) Player *player;
-@property (strong, nonatomic) BotEasy* bot;
-@property (strong, nonatomic) Board* board;
-@property (nonatomic) EnumCellState playerState;
-@property (nonatomic) EnumCellState botState;
+@property (strong, nonatomic) Board *board;
 
--(instancetype)initWithPlayerName:(NSString*)playerName andPlayerSymbol:(NSString*)symbol;
+-(instancetype)initWithPlayerName:(NSString*)playerName inputDelegate:(id<InputDelegate>)iDelegate andOutputDelegate:(id<OutputDelegate>)oDelegate;
 
--(NSString*)playWithUserChoice:(NSString*)userChoice;
+-(void)makeMove;
 -(BOOL)checkWin;
--(NSString*)getWinner;
--(void)makeMoveByPlayer:(NSString*)coordinatesString;
-// Code Review: the game should not care about whether it's a real player or a bot making the move
--(void)makeMoveByBot;
+-(NSString*)gameOver;
 
 
 @end

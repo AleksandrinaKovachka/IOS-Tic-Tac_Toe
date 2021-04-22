@@ -9,16 +9,21 @@
 
 @implementation Player
 
--(instancetype)initWithName:(NSString*)playerName {
-    if ([super init]) {
+-(instancetype)initWithName:(NSString*)playerName sigil:(NSString *)sigil andDelegate:(id<InputDelegate>)delegate
+{
+    if ([super init])
+    {
         self.playerName = playerName;
+        self.inputDelegate = delegate;
     }
     
     return self;
 }
 
--(void)makeMoveWithCordX:(int)cordX cordY:(int)cordY board:(Board*)board andState:(EnumCellState)state {
-    [board setMoveWithCordX:cordX cordY:cordY andState:state];
+-(NSArray<NSNumber *> *)makeMove
+{
+    NSArray<NSNumber *> *coordinates = self.inputDelegate.moveCoordinates.firstObject;
+    return coordinates;
 }
 
 @end
