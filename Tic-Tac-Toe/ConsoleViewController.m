@@ -29,6 +29,7 @@
 
 - (IBAction)onClickSubmit:(id)sender {
     [self.game makeMove];
+    self.userChoice.text = @"";
 }
 
 // MARK: - InputDelegate
@@ -49,6 +50,11 @@
 -(void)drawGameOver
 {
     self.boardConsoleLabel.text = self.game.gameOver;
+}
+
+-(void)drawErrorState
+{
+    self.boardConsoleLabel.text = [@"Not valid input!\n" stringByAppendingString:[NSString stringWithFormat:@"%@", self.game.board]];
 }
 
 /*
