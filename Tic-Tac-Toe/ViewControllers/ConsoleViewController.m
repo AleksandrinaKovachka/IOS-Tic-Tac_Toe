@@ -68,7 +68,6 @@
 
 -(BOOL)isCorrectInput
 {
-    //if have not space
     if([self.inputChoice.text componentsSeparatedByString:@" "].count != 2)
     {
         return NO;

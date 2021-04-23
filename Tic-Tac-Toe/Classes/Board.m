@@ -57,6 +57,28 @@
     return [NSString stringWithString:boardToString];
 }
 
+-(NSArray<NSString*>*)stateDescription
+{
+    NSMutableArray<NSString*>* boardStates = [[NSMutableArray alloc] init];
+    //NSMutableString* imageName = [[NSMutableString alloc] init];
+    for (int i = 0; i < self.cells.count; ++i) {
+        if (self.cells[i].state == EnumCellStateX)
+        {
+            [boardStates addObject: @"X"];
+        }
+        else if (self.cells[i].state == EnumCellStateO)
+        {
+            [boardStates addObject: @"O"];
+        }
+        else
+        {
+            [boardStates addObject: @"None"];
+        }
+    }
+    
+    return [NSArray arrayWithArray:boardStates];
+}
+
 -(void)setMoveWithCordX:(int)cordX cordY:(int)cordY andState:(EnumCellState)state
 {
     Cell *cell = [self cellAtX:cordX andY:cordY];
@@ -188,6 +210,11 @@
     }
     
     return NO;
+}
+
+-(int)columnsCount
+{
+    return self.columns;
 }
 
 @end
