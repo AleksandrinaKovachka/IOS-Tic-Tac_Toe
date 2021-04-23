@@ -21,21 +21,30 @@
     self.boardConsoleLabel.text = self.game.board.description;
 }*/
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.game = [[Game alloc] initWithPlayerName:@"Pesho" inputDelegate:self andOutputDelegate:self];
-    self.boardConsoleLabel.text = self.game.board.description;
+    self.consoleBoardLabel.text = self.game.board.description;
 }
 
-- (IBAction)onClickSubmit:(id)sender {
-    [self.game makeMove];
-    self.userChoice.text = @"";
+- (IBAction)onClickSubmit:(id)sender
+{
+    if (self.isCorrectInput)
+    {
+        [self.game makeMove];
+    }
+    else
+    {
+        [self drawErrorState];
+    }
+    self.inputChoice.text = @"";
 }
 
 // MARK: - InputDelegate
 - (NSArray<NSArray<NSNumber *> *> *)moveCoordinates
 {
-    NSArray<NSString *> *coordinatesText = [self.userChoice.text componentsSeparatedByString:@" "];
+    NSArray<NSString *> *coordinatesText = [self.inputChoice.text componentsSeparatedByString:@" "];
     NSArray<NSNumber *> *coordinates = @[@(coordinatesText[0].intValue), @(coordinatesText[1].intValue)];
     return @[coordinates];
 }
@@ -44,17 +53,32 @@
 
 -(void)draw
 {
-    self.boardConsoleLabel.text = [NSString stringWithFormat:@"%@", self.game.board];
+    self.consoleBoardLabel.text = [NSString stringWithFormat:@"%@", self.game.board];
 }
 
 -(void)drawGameOver
 {
-    self.boardConsoleLabel.text = self.game.gameOver;
+    self.consoleBoardLabel.text = self.game.gameOver;
 }
 
 -(void)drawErrorState
 {
-    self.boardConsoleLabel.text = [@"Not valid input!\n" stringByAppendingString:[NSString stringWithFormat:@"%@", self.game.board]];
+    self.consoleBoardLabel.text = [@"Not valid input!\n" stringByAppendingString:[NSString stringWithFormat:@"%@", self.game.board]];
+}
+
+-(BOOL)isCorrectInput
+{
+    //if have not space
+    if([self.inputChoice.text componentsSeparatedByString:@" "].count != 2)
+    {
+        return NO;
+    }
+    NSArray<NSNumber*>* coordinates = self.moveCoordinates.firstObject;
+    if (coordinates[0].intValue >= 0 && coordinates[0].intValue < 3 && coordinates[1].intValue >= 0 && coordinates[1].intValue < 3) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 /*

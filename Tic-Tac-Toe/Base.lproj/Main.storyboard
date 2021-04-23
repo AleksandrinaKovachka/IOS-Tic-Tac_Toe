@@ -64,8 +64,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="boardConsoleLabel" destination="Bsy-Xz-e6u" id="0IF-oV-zxb"/>
-                        <outlet property="userChoice" destination="dY4-wo-Yrw" id="cgX-Z5-Fqw"/>
+                        <outlet property="consoleBoardLabel" destination="Bsy-Xz-e6u" id="0IF-oV-zxb"/>
+                        <outlet property="inputChoice" destination="dY4-wo-Yrw" id="cgX-Z5-Fqw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

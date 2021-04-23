@@ -13,8 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ConsoleViewController : UIViewController<InputDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *boardConsoleLabel;
-@property (weak, nonatomic) IBOutlet UITextField *userChoice;
+@property (weak, nonatomic) IBOutlet UILabel *consoleBoardLabel;
+@property (weak, nonatomic) IBOutlet UITextField *inputChoice;
 
 
 @end
