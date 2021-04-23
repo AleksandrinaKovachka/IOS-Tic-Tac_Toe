@@ -40,6 +40,10 @@
     EnumCellState state = EnumCellStateEmpty;
     NSArray<NSNumber *> *coords = [self.currentPlayer makeMove];
     
+    if (self.currentPlayer != self.botPlayer && ![self.board isFreeCellWithX:coords[0].intValue andY:coords[1].intValue]) {
+        return;
+    }
+    
     if (self.currentPlayer == self.playerOne)
     {
         state = EnumCellStateX;

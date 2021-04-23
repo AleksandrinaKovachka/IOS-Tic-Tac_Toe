@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(BOOL)hasNoGapsColumn;
 -(BOOL)hasNoGapsDiagonal;
 -(BOOL)isFull;
+-(BOOL)isFreeCellWithX:(int)x andY:(int)y;
 
 @end
 

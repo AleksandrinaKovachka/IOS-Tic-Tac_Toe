@@ -181,4 +181,13 @@
     return coordinates;
 }
 
+-(BOOL)isFreeCellWithX:(int)x andY:(int)y
+{
+    if ([self cellAtX:x andY:y].state == EnumCellStateEmpty) {
+        return YES;
+    }
+    
+    return NO;
+}
+
 @end
