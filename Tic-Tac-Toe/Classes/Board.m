@@ -57,7 +57,7 @@
     return [NSString stringWithString:boardToString];
 }
 
--(NSArray<NSString*>*)stateDescription
+/*-(NSArray<NSString*>*)stateDescription
 {
     NSMutableArray<NSString*>* boardStates = [[NSMutableArray alloc] init];
     //NSMutableString* imageName = [[NSMutableString alloc] init];
@@ -74,6 +74,16 @@
         {
             [boardStates addObject: @"None"];
         }
+    }
+    
+    return [NSArray arrayWithArray:boardStates];
+}*/
+
+-(NSArray<NSNumber*>*)stateDescription
+{
+    NSMutableArray<NSNumber*>* boardStates = [[NSMutableArray alloc] init];
+    for (int i = 0; i < self.cells.count; ++i) {
+        [boardStates addObject:@(self.cells[i].state)];
     }
     
     return [NSArray arrayWithArray:boardStates];

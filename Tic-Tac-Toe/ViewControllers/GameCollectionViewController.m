@@ -12,6 +12,7 @@
 @interface GameCollectionViewController ()
 
 @property (strong, nonatomic) Game* game;
+@property (assign) int lastSelected;
 
 @end
 
@@ -51,17 +52,96 @@ static NSString * const reuseIdentifier = @"GameCell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 9;//self.game.board.columnsCount;
+    return 9;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     GameCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GameCell" forIndexPath:indexPath];
     
-    NSArray<NSString*>* boardStates = self.game.board.stateDescription;
-    cell.stateImages.image = [UIImage imageNamed:boardStates[indexPath.row]];
+    //NSArray<NSString*>* boardStates = self.game.board.stateDescription;
+    NSArray<NSNumber*>* boardStates = self.game.board.stateDescription;
+    NSString* imageName;
     
+    if (boardStates[indexPath.item].intValue == 0)
+    {
+        imageName = @"None";
+    }
+    else if (boardStates[indexPath.item].intValue == 1)
+    {
+        imageName = @"X";
+    }
+    else
+    {
+        imageName = @"O";
+    }
+
+    cell.stateImages.image = [UIImage imageNamed:imageName];
+    [cell layoutSubviews];
     return cell;
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    //get coordinate
+    self.lastSelected = indexPath.item;
+    //GameCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GameCell" forIndexPath:indexPath];
+    //cell.selected = YES;
+    [self.game makeMove];
+}
+
+
+-(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    int width = collectionView.frame.size.width / 3;
+    //int height = collectionView.frame.size.height / 3;
+    return CGSizeMake(width, width);
+}
+
+- (NSArray<NSArray<NSNumber *> *> *)moveCoordinates
+{
+    //NSArray<NSString *> *coordinatesText = [self.inputChoice.text componentsSeparatedByString:@" "];
+    //NSArray<NSNumber *> *coordinates = @[@(coordinatesText[0].intValue), @(coordinatesText[1].intValue)];
+    //return @[coordinates];
+    
+    int cordX = self.lastSelected / self.game.board.columnsCount;
+    int cordY = self.lastSelected % self.game.board.columnsCount;
+    
+    if (cordY == 0)
+    {
+        if (cordX > 0)
+        {
+            cordY = self.game.board.columnsCount;
+        }
+        else
+        {
+            cordY = self.lastSelected;
+        }
+    }
+    
+    NSArray<NSNumber *> *coordinates = @[@(cordX), @(cordY)];
+    return @[coordinates];
+}
+
+-(void)draw
+{
+    [self.collectionView reloadData];
+}
+
+-(void)drawGameOver
+{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Game is over!" message:@"Someone win the game" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    
+    [alert addAction:okButton];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+/*-(void)drawErrorState
+{
+    self.consoleBoardLabel.text = [@"Not valid input!\n" stringByAppendingString:[NSString stringWithFormat:@"%@", self.game.board]];
+}*/
+
 
 #pragma mark <UICollectionViewDelegate>
 
@@ -93,5 +173,11 @@ static NSString * const reuseIdentifier = @"GameCell";
 	
 }
 */
+
+//- (NSArray<NSArray<NSNumber *> *> *)moveCoordinates {
+//    NSIndexPath *indexPath;
+//}
+
+
 
 @end

@@ -58,7 +58,7 @@
 
 -(void)drawGameOver
 {
-    self.consoleBoardLabel.text = self.game.gameOver;
+    //self.consoleBoardLabel.text = self.game.gameOver;
 }
 
 -(void)drawErrorState

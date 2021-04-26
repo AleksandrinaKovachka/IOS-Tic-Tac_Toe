@@ -18,7 +18,7 @@
 
 -(void)draw;
 -(void)drawGameOver;
--(void)drawErrorState;
+//-(void)drawErrorState;
 
 @end
 

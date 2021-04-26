@@ -15,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(instancetype)initWithRows:(int)rows andColumns:(int)columns;
 -(NSString*)description;
--(NSArray<NSString*>*)stateDescription;
+//-(NSArray<NSString*>*)stateDescription;
+-(NSArray<NSNumber*>*)stateDescription;
 -(void)setMoveWithCordX:(int)cordX cordY:(int)cordY andState:(EnumCellState)state;
 -(BOOL)hasNoGapsRow;
 -(BOOL)hasNoGapsColumn;
