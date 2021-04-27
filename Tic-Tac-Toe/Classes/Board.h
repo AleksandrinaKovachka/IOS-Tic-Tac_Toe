@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(BOOL)isFull;
 -(BOOL)isFreeCellWithX:(int)x andY:(int)y;
 -(int)columnsCount;
+-(int)boardCount;
+-(void)clearBoard;
 
 @end
 

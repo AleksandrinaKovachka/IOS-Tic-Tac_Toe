@@ -22,6 +22,8 @@
 		8EBBEF87262EAFFB00F60244 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBBEF86262EAFFB00F60244 /* Cell.m */; };
 		8EBBEF982632BEC000F60244 /* GameCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBBEF972632BEC000F60244 /* GameCollectionViewController.m */; };
 		8EBBEF9C2632CC1300F60244 /* GameCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBBEF9B2632CC1300F60244 /* GameCollectionViewCell.m */; };
+		8EBBEFA0263827AC00F60244 /* GameContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBBEF9F263827AC00F60244 /* GameContainerViewController.m */; };
+		8EBBEFA426382E8500F60244 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBBEFA326382E8500F60244 /* UserInfoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,10 @@
 		8EBBEF972632BEC000F60244 /* GameCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameCollectionViewController.m; sourceTree = "<group>"; };
 		8EBBEF9A2632CC1300F60244 /* GameCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameCollectionViewCell.h; sourceTree = "<group>"; };
 		8EBBEF9B2632CC1300F60244 /* GameCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameCollectionViewCell.m; sourceTree = "<group>"; };
+		8EBBEF9E263827AC00F60244 /* GameContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameContainerViewController.h; sourceTree = "<group>"; };
+		8EBBEF9F263827AC00F60244 /* GameContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameContainerViewController.m; sourceTree = "<group>"; };
+		8EBBEFA226382E8500F60244 /* UserInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
+		8EBBEFA326382E8500F60244 /* UserInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +136,10 @@
 				8EBBEF972632BEC000F60244 /* GameCollectionViewController.m */,
 				8EBBEF9A2632CC1300F60244 /* GameCollectionViewCell.h */,
 				8EBBEF9B2632CC1300F60244 /* GameCollectionViewCell.m */,
+				8EBBEF9E263827AC00F60244 /* GameContainerViewController.h */,
+				8EBBEF9F263827AC00F60244 /* GameContainerViewController.m */,
+				8EBBEFA226382E8500F60244 /* UserInfoViewController.h */,
+				8EBBEFA326382E8500F60244 /* UserInfoViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -208,9 +218,11 @@
 				8E580C1326245F7E0015F22C /* ViewController.m in Sources */,
 				8E580C0D26245F7E0015F22C /* AppDelegate.m in Sources */,
 				8E580C1E26245F7F0015F22C /* main.m in Sources */,
+				8EBBEFA426382E8500F60244 /* UserInfoViewController.m in Sources */,
 				8EBBEF73262D7C7E00F60244 /* ConsoleViewController.m in Sources */,
 				8EBBEF87262EAFFB00F60244 /* Cell.m in Sources */,
 				8E580C1026245F7E0015F22C /* SceneDelegate.m in Sources */,
+				8EBBEFA0263827AC00F60244 /* GameContainerViewController.m in Sources */,
 				8EBBEF6F2629910700F60244 /* Game.m in Sources */,
 				8EBBEF7D262D950600F60244 /* BotEasy.m in Sources */,
 				8EBBEF67262990DD00F60244 /* Player.m in Sources */,

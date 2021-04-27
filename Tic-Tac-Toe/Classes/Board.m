@@ -227,4 +227,17 @@
     return self.columns;
 }
 
+-(int)boardCount
+{
+    return (int) self.cells.count;
+}
+
+-(void)clearBoard
+{
+    for (int i = 0; i < self.cells.count; ++i)
+    {
+        self.cells[i].state = EnumCellStateEmpty;
+    }
+}
+
 @end

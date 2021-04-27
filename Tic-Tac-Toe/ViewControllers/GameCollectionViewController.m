@@ -5,6 +5,9 @@
 //  Created by A-Team Intern on 23.04.21.
 //
 
+//TODO: score of player and name
+//TODO: buttons undo and redo
+
 #import "GameCollectionViewController.h"
 #import "Game.h"
 #import "GameCollectionViewCell.h"
@@ -25,13 +28,7 @@ static NSString * const reuseIdentifier = @"GameCell";
     
     self.game = [[Game alloc] initWithPlayerName:@"Pesho" inputDelegate:self andOutputDelegate:self];
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Register cell classes
-    //[self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
-    // Do any additional setup after loading the view.
 }
 
 /*
@@ -52,7 +49,7 @@ static NSString * const reuseIdentifier = @"GameCell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 9; //TODO
+    return self.game.board.boardCount;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -83,7 +80,7 @@ static NSString * const reuseIdentifier = @"GameCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     //get coordinate
-    self.lastSelected = indexPath.item;
+    self.lastSelected = (int) indexPath.item;
     //GameCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GameCell" forIndexPath:indexPath];
     //cell.selected = YES;
     [self.game makeMove];
@@ -93,12 +90,11 @@ static NSString * const reuseIdentifier = @"GameCell";
 -(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     int width = collectionView.frame.size.width / 3;
-    //int height = collectionView.frame.size.height / 3;
     return CGSizeMake(width, width);
 }
 
 - (NSArray<NSArray<NSNumber *> *> *)moveCoordinates
-{    
+{
     int cordX = self.lastSelected / self.game.board.columnsCount;
     int cordY = self.lastSelected % self.game.board.columnsCount;
     
@@ -118,11 +114,19 @@ static NSString * const reuseIdentifier = @"GameCell";
 
 -(void)drawGameOver
 {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Game is over!" message:self.game.gameOver preferredStyle:UIAlertControllerStyleAlert];
+    //TODO: new storyboard to display thw winner
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Game is over!\n Do you want to play again!" message:self.game.gameOver preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction* yesButton = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:nil]; //clear the board and make function in board to clear states
+    //alert to close app
+    UIAlertAction* noButton = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDestructive handler:^(UIAlertAction* action)
+    {
+        exit(0);
+    }];
     
-    [alert addAction:okButton];
+    
+    [alert addAction:yesButton];
+    [alert addAction:noButton];
     [self presentViewController:alert animated:YES completion:nil];
 }
 

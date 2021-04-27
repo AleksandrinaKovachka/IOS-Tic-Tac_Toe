@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3rZ-3A-bKZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tJa-0x-pik">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -71,14 +71,72 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1862" y="-62"/>
+            <point key="canvasLocation" x="-2386" y="-38"/>
+        </scene>
+        <!--User Info View Controller-->
+        <scene sceneID="0Mz-Si-mdt">
+            <objects>
+                <viewController storyboardIdentifier="UserInfoControllerID" id="UkA-gc-4EE" customClass="UserInfoViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J7E-I4-N7L">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Tx-vB-hFj">
+                                <rect key="frame" x="31" y="129" width="95" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TUb-Mw-0Om">
+                                <rect key="frame" x="144" y="124" width="201" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k3Y-pR-J8n">
+                                <rect key="frame" x="262" y="664" width="94" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Play Game"/>
+                                <connections>
+                                    <action selector="onClickPlayGame:" destination="UkA-gc-4EE" eventType="touchUpInside" id="crO-EC-2mz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="I08-tI-ssi"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="userNameTextField" destination="TUb-Mw-0Om" id="to3-yP-xf7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zPG-7T-8fJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1682" y="-44"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jT0-Kb-zuu">
+            <objects>
+                <navigationController id="cpn-2c-lDM" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j7I-z8-gmT">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="tJa-0x-pik" kind="relationship" relationship="rootViewController" id="RT7-8l-DdN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Uq-9J-Orj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-994" y="-44"/>
         </scene>
         <!--Game Collection View Controller-->
         <scene sceneID="2BQ-3C-oGP">
             <objects>
                 <collectionViewController id="3rZ-3A-bKZ" customClass="GameCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="pXG-Fq-X2v">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="340" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="uPN-sU-kzC">
@@ -120,7 +178,73 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dNF-Nw-mNF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-490" y="-58"/>
+            <point key="canvasLocation" x="627" y="-56"/>
+        </scene>
+        <!--Game Container View Controller-->
+        <scene sceneID="gSb-lL-qWE">
+            <objects>
+                <viewController id="tJa-0x-pik" customClass="GameContainerViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sNQ-Xj-Zjh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hQ-vv-Khj">
+                                <rect key="frame" x="19" y="178" width="340" height="600"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="340" id="Bzg-uW-s7V"/>
+                                    <constraint firstAttribute="height" constant="600" id="nq3-n9-uVQ"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="3rZ-3A-bKZ" kind="embed" id="MqJ-l4-Ual"/>
+                                </connections>
+                            </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atj-lK-i5V">
+                                <rect key="frame" x="19" y="113" width="52" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QYa-Ww-wOc">
+                                <rect key="frame" x="308" y="113" width="51" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Upn-wj-VBn"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="QYa-Ww-wOc" firstAttribute="leading" secondItem="atj-lK-i5V" secondAttribute="trailing" constant="237" id="3jC-0s-Npu"/>
+                            <constraint firstItem="4hQ-vv-Khj" firstAttribute="top" secondItem="Upn-wj-VBn" secondAttribute="top" constant="90" id="4ls-Jd-31W"/>
+                            <constraint firstItem="4hQ-vv-Khj" firstAttribute="top" secondItem="atj-lK-i5V" secondAttribute="bottom" constant="41" id="982-EA-C7K"/>
+                            <constraint firstItem="Upn-wj-VBn" firstAttribute="trailing" secondItem="atj-lK-i5V" secondAttribute="trailing" constant="304" id="B9a-vF-0YS"/>
+                            <constraint firstItem="Upn-wj-VBn" firstAttribute="bottom" secondItem="4hQ-vv-Khj" secondAttribute="bottom" id="E5d-Ag-vIl"/>
+                            <constraint firstItem="4hQ-vv-Khj" firstAttribute="top" secondItem="QYa-Ww-wOc" secondAttribute="bottom" constant="41" id="hQc-Wb-uzC"/>
+                            <constraint firstItem="4hQ-vv-Khj" firstAttribute="leading" secondItem="Upn-wj-VBn" secondAttribute="leading" constant="19" id="qzK-Mx-gIf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="rx3-DH-Tdr">
+                        <rightBarButtonItems>
+                            <barButtonItem title="Undo" id="W24-l2-gAC">
+                                <connections>
+                                    <action selector="onClickUndo:" destination="tJa-0x-pik" id="Evj-BE-efG"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Redo" id="uLb-Bf-oaA">
+                                <connections>
+                                    <action selector="onClickRedo:" destination="tJa-0x-pik" id="BaX-7m-hEZ"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="scoreLabel" destination="QYa-Ww-wOc" id="sa1-qV-0Yz"/>
+                        <outlet property="userNameLabel" destination="atj-lK-i5V" id="Bq6-RO-sRg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xyU-to-yz2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-166" y="-44"/>
         </scene>
     </scenes>
     <resources>

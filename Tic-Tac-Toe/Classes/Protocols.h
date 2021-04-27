@@ -22,5 +22,11 @@
 
 @end
 
+@protocol UserNameDelegate <NSObject>
+
+-(void)userWithName:(NSString*)name;
+
+@end
+
 
 #endif /* Protocols_h */

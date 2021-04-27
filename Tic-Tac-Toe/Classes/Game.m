@@ -35,6 +35,7 @@
     return self;
 }
 
+//TODO: new class Move - save moves in stack(undo and redo) and make move
 -(void)makeMove
 {
     EnumCellState state = EnumCellStateEmpty;
