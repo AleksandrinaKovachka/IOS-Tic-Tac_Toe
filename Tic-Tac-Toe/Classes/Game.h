@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)makeMove;
 -(BOOL)checkWin;
-//-(NSString*)gameOver;
+-(NSString*)gameOver;
 
 
 @end

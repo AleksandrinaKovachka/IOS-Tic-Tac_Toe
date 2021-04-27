@@ -52,7 +52,7 @@ static NSString * const reuseIdentifier = @"GameCell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 9;
+    return 9; //TODO
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -98,24 +98,13 @@ static NSString * const reuseIdentifier = @"GameCell";
 }
 
 - (NSArray<NSArray<NSNumber *> *> *)moveCoordinates
-{
-    //NSArray<NSString *> *coordinatesText = [self.inputChoice.text componentsSeparatedByString:@" "];
-    //NSArray<NSNumber *> *coordinates = @[@(coordinatesText[0].intValue), @(coordinatesText[1].intValue)];
-    //return @[coordinates];
-    
+{    
     int cordX = self.lastSelected / self.game.board.columnsCount;
     int cordY = self.lastSelected % self.game.board.columnsCount;
     
-    if (cordY == 0)
+    if (cordY == 0 && cordX == 0)
     {
-        if (cordX > 0)
-        {
-            cordY = self.game.board.columnsCount;
-        }
-        else
-        {
-            cordY = self.lastSelected;
-        }
+        cordY = self.lastSelected;
     }
     
     NSArray<NSNumber *> *coordinates = @[@(cordX), @(cordY)];
@@ -129,7 +118,7 @@ static NSString * const reuseIdentifier = @"GameCell";
 
 -(void)drawGameOver
 {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Game is over!" message:@"Someone win the game" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Game is over!" message:self.game.gameOver preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* okButton = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     

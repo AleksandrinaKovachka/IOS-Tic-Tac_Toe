@@ -46,15 +46,14 @@
         return;
     }*/
     
+    //only state of current player
     if (self.currentPlayer == self.playerOne)
     {
         state = EnumCellStateX;
-        self.currentPlayer = self.playerTwo;
     }
     else
     {
         state = EnumCellStateO;
-        self.currentPlayer = self.playerOne;
     }
     
     [self.board setMoveWithCordX:coords[0].intValue cordY:coords[1].intValue andState:state];
@@ -62,10 +61,22 @@
     //isFull haveWinner
     if (self.board.isFull || self.checkWin)
     {
+        [self.outputDelegate draw];
         [self.outputDelegate drawGameOver];
         return;
     }
     
+    //if the game is not win change the player
+    if (self.currentPlayer == self.playerOne)
+    {
+        self.currentPlayer = self.playerTwo;
+    }
+    else
+    {
+        self.currentPlayer = self.playerOne;
+    }
+    
+    //if another player is bot
     if (self.currentPlayer == self.botPlayer)
     {
         [self makeMove];
@@ -82,13 +93,13 @@
     return NO;
 }
 
-/*-(NSString*)gameOver
+-(NSString*)gameOver
 {
     if (self.board.isFull) {
-        return @"Game is over!";
+        return @"Game is over. The board is full!";
     }
-    return self.currentPlayer.playerName;
-}*/
+    return self.currentPlayer.playerName; //error
+}
 
 
 @end
