@@ -10,8 +10,6 @@
 #import "Protocols.h"
 #import "NotificationNames.h"
 
-//TODO: protocol or notification for score - change in Player
-
 @interface GameContainerViewController ()
 
 
@@ -63,6 +61,7 @@
     {
         GameCollectionViewController *embedded = (GameCollectionViewController *)segue.destinationViewController;
         self.undoAndRedoDelegate = embedded;
+        embedded.playerName = self.userNameLabel.text;
     }
 }
 

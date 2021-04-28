@@ -26,8 +26,11 @@ static NSString * const reuseIdentifier = @"GameCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.game = [[Game alloc] initWithPlayerName:@"Pesho" inputDelegate:self andOutputDelegate:self];
+    NSString* name = self.playerName;
     
+    //TODO: correct name from container controller(protocol)
+    self.game = [[Game alloc] initWithPlayerName:name inputDelegate:self andOutputDelegate:self];
+    //function return name of player
     
 }
 
@@ -54,6 +57,7 @@ static NSString * const reuseIdentifier = @"GameCell";
     [self draw];
 }
 
+
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -68,7 +72,6 @@ static NSString * const reuseIdentifier = @"GameCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     GameCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GameCell" forIndexPath:indexPath];
     
-    //NSArray<NSString*>* boardStates = self.game.board.stateDescription;
     NSArray<NSNumber*>* boardStates = self.game.board.stateDescription;
     NSString* imageName;
     
@@ -92,9 +95,7 @@ static NSString * const reuseIdentifier = @"GameCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    //get coordinate
     self.lastSelected = (int) indexPath.item;
-    //GameCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GameCell" forIndexPath:indexPath];
     //cell.selected = YES;
     [self.game makeMove];
 }

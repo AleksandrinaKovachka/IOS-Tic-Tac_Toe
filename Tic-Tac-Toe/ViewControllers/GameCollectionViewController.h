@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GameCollectionViewController : UICollectionViewController<InputDelegate, OutputDelegate, UndoAndRedoDelegate, UICollectionViewDelegateFlowLayout>
 
+@property (strong, nonatomic) NSString* playerName;
+
 @end
 
 NS_ASSUME_NONNULL_END

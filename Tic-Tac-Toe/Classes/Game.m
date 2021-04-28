@@ -59,7 +59,7 @@
 
     [self.board setMoveCoordinates:coords andState:state];
     
-    if (self.board.isFull || self.checkWin)
+    if (self.board.isFull || self.checkWin) //winner is not correct
     {
         [self.outputDelegate draw];
         [self.outputDelegate drawGameOver];
@@ -147,7 +147,13 @@
     Move* move = [self popFromRedo];
     [self.board setMoveCoordinates:move.coordinates andState:move.currentState];
     [self pushMove:move];
-    //[self.playerOne changeScoreWith:1];
+    [self.playerOne changeScoreWith:1];
+    
+    //change player
+    if (self.currentPlayer == self.playerOne)
+    {
+        self.currentPlayer = self.playerTwo;
+    }
     
     [self makeMove]; //for bot
 }
