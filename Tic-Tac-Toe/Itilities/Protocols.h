@@ -28,5 +28,12 @@
 
 @end
 
+@protocol UndoAndRedoDelegate <NSObject>
+
+-(void)undo;
+-(void)redo;
+
+@end
+
 
 #endif /* Protocols_h */

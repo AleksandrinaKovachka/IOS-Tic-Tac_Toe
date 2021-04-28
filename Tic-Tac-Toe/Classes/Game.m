@@ -13,6 +13,9 @@
 @property (strong, nonatomic) Player *playerTwo;
 @property (strong, nonatomic) Player *currentPlayer;
 @property (strong, nonatomic) Player *botPlayer;
+@property (strong, nonatomic) NSMutableArray<Move*>* undoStack;
+@property (strong, nonatomic) NSMutableArray<Move*>* redoStack;
+
 @property (weak, nonatomic) id<OutputDelegate> outputDelegate;
 
 @end
@@ -29,25 +32,20 @@
         self.botPlayer = self.playerTwo;
         self.currentPlayer = self.playerOne;
         self.outputDelegate = oDelegate;
+        self.undoStack = [[NSMutableArray alloc] init];
+        self.redoStack = [[NSMutableArray alloc] init];
+        
         
     }
     
     return self;
 }
 
-//TODO: new class Move - save moves in stack(undo and redo) and make move
 -(void)makeMove
 {
     EnumCellState state = EnumCellStateEmpty;
     NSArray<NSNumber *> *coords = [self.currentPlayer makeMove];
     
-    /*if (self.currentPlayer != self.botPlayer && ![self.board isFreeCellWithX:coords[0].intValue andY:coords[1].intValue])
-    {
-        [self.outputDelegate drawErrorState];
-        return;
-    }*/
-    
-    //only state of current player
     if (self.currentPlayer == self.playerOne)
     {
         state = EnumCellStateX;
@@ -57,9 +55,10 @@
         state = EnumCellStateO;
     }
     
-    [self.board setMoveWithCordX:coords[0].intValue cordY:coords[1].intValue andState:state];
+    [self pushMove:[[Move alloc] initWithCoordinates:coords andCurrentState:state andPreviousState:EnumCellStateEmpty]];
+
+    [self.board setMoveCoordinates:coords andState:state];
     
-    //isFull haveWinner
     if (self.board.isFull || self.checkWin)
     {
         [self.outputDelegate draw];
@@ -67,7 +66,6 @@
         return;
     }
     
-    //if the game is not win change the player
     if (self.currentPlayer == self.playerOne)
     {
         self.currentPlayer = self.playerTwo;
@@ -77,7 +75,6 @@
         self.currentPlayer = self.playerOne;
     }
     
-    //if another player is bot
     if (self.currentPlayer == self.botPlayer)
     {
         [self makeMove];
@@ -99,7 +96,60 @@
     if (self.board.isFull) {
         return @"Game is over. The board is full!";
     }
-    return self.currentPlayer.playerName; //error
+    return self.currentPlayer.playerName;
+}
+
+-(void)pushMove:(Move*)move
+{
+    [self.undoStack addObject:move];
+}
+
+-(void)pushInRedo:(Move*)undoMove
+{
+    [self.redoStack addObject:undoMove];
+}
+
+-(Move*)popFromUndo
+{
+    Move* undoMove = self.undoStack.lastObject;
+    [self.undoStack removeLastObject];
+    
+    return undoMove;
+}
+
+-(Move*)popFromRedo
+{
+    Move* redoMove = self.redoStack.lastObject;
+    [self.redoStack removeLastObject];
+    
+    return redoMove;
+}
+
+-(void)undo
+{
+    if (self.playerTwo == self.botPlayer)
+    {
+        Move* moveBot = [self popFromUndo];
+        Move* undoMoveBot = moveBot.opposite;
+        [self.board setMoveCoordinates:undoMoveBot.coordinates andState:undoMoveBot.currentState];
+    }
+    
+    Move* move = [self popFromUndo];
+    Move* undoMove = move.opposite;
+    [self.board setMoveCoordinates:undoMove.coordinates andState:undoMove.currentState];
+    [self.playerOne changeScoreWith:(-1)];
+
+    [self pushInRedo:move];
+}
+
+-(void)redo
+{
+    Move* move = [self popFromRedo];
+    [self.board setMoveCoordinates:move.coordinates andState:move.currentState];
+    [self pushMove:move];
+    //[self.playerOne changeScoreWith:1];
+    
+    [self makeMove]; //for bot
 }
 
 

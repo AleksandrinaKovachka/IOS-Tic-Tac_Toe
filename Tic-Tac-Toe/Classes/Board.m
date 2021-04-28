@@ -95,6 +95,11 @@
     cell.state = state;
 }
 
+-(void)setMoveCoordinates:(NSArray<NSNumber*>*)coordinates andState:(EnumCellState)state
+{
+    [self setMoveWithCordX:coordinates[0].intValue cordY:coordinates[1].intValue andState:state];
+}
+
 -(BOOL)hasNoGapsRow
 {
     int count = 1;

@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(instancetype)initWithName:(NSString*)playerName sigil:(NSString *)sigil andDelegate:(id<InputDelegate>)delegate;
 -(NSArray<NSNumber *> *)makeMove;
+-(void)changeScoreWith:(int)value;
 
 @end
 

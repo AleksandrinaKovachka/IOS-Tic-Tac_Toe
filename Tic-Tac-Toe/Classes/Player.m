@@ -6,6 +6,7 @@
 //
 
 #import "Player.h"
+#import "NotificationNames.h"
 
 @interface Player ()
 
@@ -30,9 +31,15 @@
 -(NSArray<NSNumber *> *)makeMove
 {
     NSArray<NSNumber *> *coordinates = self.inputDelegate.moveCoordinates.firstObject;
-    ++self.score;
-    //TODO: delegate change score label
+    [self changeScoreWith:1];
+    
     return coordinates;
+}
+
+-(void)changeScoreWith:(int)value
+{
+    self.score += value;
+    [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_CHANGE_SCORE object:[NSNumber numberWithInt:self.score] userInfo:nil];
 }
 
 @end

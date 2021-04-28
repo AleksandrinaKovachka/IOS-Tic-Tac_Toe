@@ -41,6 +41,19 @@ static NSString * const reuseIdentifier = @"GameCell";
 }
 */
 
+
+-(void)undo
+{
+    [self.game undo];
+    [self draw];
+}
+
+-(void)redo
+{
+    [self.game redo];
+    [self draw];
+}
+
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {

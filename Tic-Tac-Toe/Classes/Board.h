@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "Cell.h"
 #import "Protocols.h"
+#import "Move.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,7 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString*)description;
 //-(NSArray<NSString*>*)stateDescription;
 -(NSArray<NSNumber*>*)stateDescription;
--(void)setMoveWithCordX:(int)cordX cordY:(int)cordY andState:(EnumCellState)state;
+//-(void)setMoveWithCordX:(int)cordX cordY:(int)cordY andState:(EnumCellState)state;
+-(void)setMoveCoordinates:(NSArray<NSNumber*>*)coordinates andState:(EnumCellState)state;
 -(BOOL)hasNoGapsRow;
 -(BOOL)hasNoGapsColumn;
 -(BOOL)hasNoGapsDiagonal;

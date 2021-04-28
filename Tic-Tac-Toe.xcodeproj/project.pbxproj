@@ -24,6 +24,7 @@
 		8EBBEF9C2632CC1300F60244 /* GameCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBBEF9B2632CC1300F60244 /* GameCollectionViewCell.m */; };
 		8EBBEFA0263827AC00F60244 /* GameContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBBEF9F263827AC00F60244 /* GameContainerViewController.m */; };
 		8EBBEFA426382E8500F60244 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBBEFA326382E8500F60244 /* UserInfoViewController.m */; };
+		8EBBEFA8263851C600F60244 /* Move.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBBEFA7263851C600F60244 /* Move.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,9 @@
 		8EBBEF9F263827AC00F60244 /* GameContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameContainerViewController.m; sourceTree = "<group>"; };
 		8EBBEFA226382E8500F60244 /* UserInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
 		8EBBEFA326382E8500F60244 /* UserInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
+		8EBBEFA6263851C500F60244 /* Move.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Move.h; sourceTree = "<group>"; };
+		8EBBEFA7263851C600F60244 /* Move.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Move.m; sourceTree = "<group>"; };
+		8EC231632639808C008EACBE /* NotificationNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationNames.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,7 @@
 		8E580C0A26245F7E0015F22C /* Tic-Tac-Toe */ = {
 			isa = PBXGroup;
 			children = (
+				8EC2316226398069008EACBE /* Itilities */,
 				8EBBEF952632BDA300F60244 /* ViewControllers */,
 				8EBBEF64262990C200F60244 /* Classes */,
 				8E580C0B26245F7E0015F22C /* AppDelegate.h */,
@@ -112,7 +117,6 @@
 		8EBBEF64262990C200F60244 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				8EBBEF932631792200F60244 /* Protocols.h */,
 				8EBBEF65262990DD00F60244 /* Player.h */,
 				8EBBEF66262990DD00F60244 /* Player.m */,
 				8EBBEF69262990F500F60244 /* Board.h */,
@@ -123,6 +127,8 @@
 				8EBBEF7C262D950600F60244 /* BotEasy.m */,
 				8EBBEF85262EAFFB00F60244 /* Cell.h */,
 				8EBBEF86262EAFFB00F60244 /* Cell.m */,
+				8EBBEFA6263851C500F60244 /* Move.h */,
+				8EBBEFA7263851C600F60244 /* Move.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -142,6 +148,15 @@
 				8EBBEFA326382E8500F60244 /* UserInfoViewController.m */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8EC2316226398069008EACBE /* Itilities */ = {
+			isa = PBXGroup;
+			children = (
+				8EC231632639808C008EACBE /* NotificationNames.h */,
+				8EBBEF932631792200F60244 /* Protocols.h */,
+			);
+			path = Itilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +238,7 @@
 				8EBBEF87262EAFFB00F60244 /* Cell.m in Sources */,
 				8E580C1026245F7E0015F22C /* SceneDelegate.m in Sources */,
 				8EBBEFA0263827AC00F60244 /* GameContainerViewController.m in Sources */,
+				8EBBEFA8263851C600F60244 /* Move.m in Sources */,
 				8EBBEF6F2629910700F60244 /* Game.m in Sources */,
 				8EBBEF7D262D950600F60244 /* BotEasy.m in Sources */,
 				8EBBEF67262990DD00F60244 /* Player.m in Sources */,

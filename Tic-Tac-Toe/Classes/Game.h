@@ -6,14 +6,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GameContainerViewController.h"
 #import "Player.h"
 #import "Board.h"
 #import "BotEasy.h"
 #import "Protocols.h"
+#import "Move.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Game : NSObject
+@interface Game : NSObject<UndoAndRedoDelegate>
 
 @property (strong, nonatomic) Board *board;
 
@@ -22,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)makeMove;
 -(BOOL)checkWin;
 -(NSString*)gameOver;
+-(void)undo;
+-(void)redo;
 
 
 @end
