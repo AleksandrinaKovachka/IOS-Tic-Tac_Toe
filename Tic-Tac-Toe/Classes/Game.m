@@ -163,5 +163,9 @@
     self.playerOne.playerName = name;
 }
 
+-(NSString*)getPlayerName
+{
+    return self.playerOne.playerName;
+}
 
 @end

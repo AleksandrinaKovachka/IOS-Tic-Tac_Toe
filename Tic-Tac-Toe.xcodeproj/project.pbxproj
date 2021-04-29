@@ -25,6 +25,7 @@
 		8EBBEFA0263827AC00F60244 /* GameContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBBEF9F263827AC00F60244 /* GameContainerViewController.m */; };
 		8EBBEFA426382E8500F60244 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBBEFA326382E8500F60244 /* UserInfoViewController.m */; };
 		8EBBEFA8263851C600F60244 /* Move.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBBEFA7263851C600F60244 /* Move.m */; };
+		8EC2316A263AAA3A008EACBE /* GameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC23169263AAA3A008EACBE /* GameOverViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,8 @@
 		8EBBEFA6263851C500F60244 /* Move.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Move.h; sourceTree = "<group>"; };
 		8EBBEFA7263851C600F60244 /* Move.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Move.m; sourceTree = "<group>"; };
 		8EC231632639808C008EACBE /* NotificationNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationNames.h; sourceTree = "<group>"; };
+		8EC23168263AAA3A008EACBE /* GameOverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameOverViewController.h; sourceTree = "<group>"; };
+		8EC23169263AAA3A008EACBE /* GameOverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameOverViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +149,8 @@
 				8EBBEF9F263827AC00F60244 /* GameContainerViewController.m */,
 				8EBBEFA226382E8500F60244 /* UserInfoViewController.h */,
 				8EBBEFA326382E8500F60244 /* UserInfoViewController.m */,
+				8EC23168263AAA3A008EACBE /* GameOverViewController.h */,
+				8EC23169263AAA3A008EACBE /* GameOverViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				8EBBEFA426382E8500F60244 /* UserInfoViewController.m in Sources */,
 				8EBBEF73262D7C7E00F60244 /* ConsoleViewController.m in Sources */,
 				8EBBEF87262EAFFB00F60244 /* Cell.m in Sources */,
+				8EC2316A263AAA3A008EACBE /* GameOverViewController.m in Sources */,
 				8E580C1026245F7E0015F22C /* SceneDelegate.m in Sources */,
 				8EBBEFA0263827AC00F60244 /* GameContainerViewController.m in Sources */,
 				8EBBEFA8263851C600F60244 /* Move.m in Sources */,

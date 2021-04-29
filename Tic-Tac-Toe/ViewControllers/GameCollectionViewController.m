@@ -11,6 +11,7 @@
 #import "GameCollectionViewController.h"
 #import "Game.h"
 #import "GameCollectionViewCell.h"
+#import "GameOverViewController.h"
 
 @interface GameCollectionViewController ()
 
@@ -129,20 +130,12 @@ static NSString * const reuseIdentifier = @"GameCell";
 
 -(void)drawGameOver
 {
-    //TODO: new storyboard to display thw winner
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Game is over!\n Do you want to play again!" message:self.game.gameOver preferredStyle:UIAlertControllerStyleAlert];
+    GameOverViewController* winner = [GameOverViewController gameOverViewControllerWithWinnerName:self.game.getPlayerName];
     
-    UIAlertAction* yesButton = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:nil]; //clear the board and make function in board to clear states
-    //alert to close app
-    UIAlertAction* noButton = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDestructive handler:^(UIAlertAction* action)
-    {
-        exit(0);
+    [self presentViewController:winner animated:YES completion: ^{
+        [self.game.board clearBoard];
+        [self.collectionView reloadData];
     }];
-    
-    
-    [alert addAction:yesButton];
-    [alert addAction:noButton];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 /*-(void)drawErrorState
