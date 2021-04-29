@@ -34,17 +34,18 @@
 
 - (IBAction)onClickUndo:(id)sender
 {
-    [self.undoAndRedoDelegate undo];
+    [self.gameDelegate undo];
 }
 
 - (IBAction)onClickRedo:(id)sender
 {
-    [self.undoAndRedoDelegate redo];
+    [self.gameDelegate redo];
 }
 
--(void)userWithName:(NSString*)name
+-(void)getPlayerName:(NSString*)name
 {
     self.userNameLabel.text = name;
+    [self.gameDelegate setPlayerNameInGame:name];
 }
 
 -(void)didChangeScore:(NSNotification*)notification
@@ -60,8 +61,7 @@
     if ([segue.identifier isEqualToString:@"EmbedCollectionViewIdentifier"])
     {
         GameCollectionViewController *embedded = (GameCollectionViewController *)segue.destinationViewController;
-        self.undoAndRedoDelegate = embedded;
-        embedded.playerName = self.userNameLabel.text;
+        self.gameDelegate = embedded;
     }
 }
 

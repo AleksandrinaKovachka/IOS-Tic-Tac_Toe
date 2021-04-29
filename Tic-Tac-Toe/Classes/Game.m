@@ -59,7 +59,7 @@
 
     [self.board setMoveCoordinates:coords andState:state];
     
-    if (self.board.isFull || self.checkWin) //winner is not correct
+    if (self.board.isFull || self.checkWin)
     {
         [self.outputDelegate draw];
         [self.outputDelegate drawGameOver];
@@ -156,6 +156,11 @@
     }
     
     [self makeMove]; //for bot
+}
+
+-(void)changePlayerNameWith:(NSString*)name
+{
+    self.playerOne.playerName = name;
 }
 
 

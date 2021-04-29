@@ -21,7 +21,7 @@
 
 - (IBAction)onClickPlayGame:(id)sender
 {
-    [self.nameDelegate userWithName:self.userNameTextField.text];
+    [self.nameDelegate getPlayerName:self.userNameTextField.text];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

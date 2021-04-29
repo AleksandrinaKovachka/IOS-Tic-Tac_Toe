@@ -23,14 +23,11 @@
 
 static NSString * const reuseIdentifier = @"GameCell";
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
-    NSString* name = self.playerName;
-    
-    //TODO: correct name from container controller(protocol)
-    self.game = [[Game alloc] initWithPlayerName:name inputDelegate:self andOutputDelegate:self];
-    //function return name of player
+    self.game = [[Game alloc] initWithPlayerName:@"name" inputDelegate:self andOutputDelegate:self];
     
 }
 
@@ -57,6 +54,10 @@ static NSString * const reuseIdentifier = @"GameCell";
     [self draw];
 }
 
+-(void)setPlayerNameInGame:(NSString*)name
+{
+    [self.game changePlayerNameWith:name];
+}
 
 #pragma mark <UICollectionViewDataSource>
 

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GameContainerViewController : UIViewController<UserNameDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
-@property (weak, nonatomic) id<UndoAndRedoDelegate> undoAndRedoDelegate;
+@property (weak, nonatomic) id<GameDelegate> gameDelegate;
 
 
 @end

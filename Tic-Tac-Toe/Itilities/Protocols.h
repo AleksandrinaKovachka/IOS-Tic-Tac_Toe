@@ -24,14 +24,15 @@
 
 @protocol UserNameDelegate <NSObject>
 
--(void)userWithName:(NSString*)name;
+-(void)getPlayerName:(NSString*)name;
 
 @end
 
-@protocol UndoAndRedoDelegate <NSObject>
+@protocol GameDelegate <NSObject>
 
 -(void)undo;
 -(void)redo;
+-(void)setPlayerNameInGame:(NSString*)name;
 
 @end
 

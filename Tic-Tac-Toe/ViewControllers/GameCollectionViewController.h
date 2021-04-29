@@ -10,9 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GameCollectionViewController : UICollectionViewController<InputDelegate, OutputDelegate, UndoAndRedoDelegate, UICollectionViewDelegateFlowLayout>
-
-@property (strong, nonatomic) NSString* playerName;
+@interface GameCollectionViewController : UICollectionViewController<InputDelegate, OutputDelegate, GameDelegate, UICollectionViewDelegateFlowLayout>
 
 @end
 

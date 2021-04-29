@@ -15,7 +15,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Game : NSObject<UndoAndRedoDelegate>
+@interface Game : NSObject
 
 @property (strong, nonatomic) Board *board;
 
@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString*)gameOver;
 -(void)undo;
 -(void)redo;
+
+-(void)changePlayerNameWith:(NSString*)name;
 
 
 @end
