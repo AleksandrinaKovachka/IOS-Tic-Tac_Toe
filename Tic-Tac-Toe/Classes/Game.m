@@ -165,7 +165,12 @@
 
 -(NSString*)getPlayerName
 {
-    return self.playerOne.playerName;
+    return self.currentPlayer.playerName;
+}
+
+-(void)resetPlayerScore
+{
+    [self.playerOne changeScoreWith:0];
 }
 
 @end

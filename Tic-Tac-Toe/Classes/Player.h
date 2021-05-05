@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Player : NSObject
 
 @property (strong, nonatomic) NSString* playerName;
-//TODO: count of move(but if is undo and redo)
 @property (readonly) int score;
 @property (weak, nonatomic) id<InputDelegate> inputDelegate;
 

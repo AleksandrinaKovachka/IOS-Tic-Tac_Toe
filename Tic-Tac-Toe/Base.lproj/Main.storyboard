@@ -228,9 +228,9 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="winner name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ea-ek-lRX">
-                                <rect key="frame" x="131.66666666666666" y="268" width="112" height="24"/>
+                                <rect key="frame" x="33" y="268" width="307" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="112" id="HiH-3j-VT6"/>
+                                    <constraint firstAttribute="width" constant="307" id="HiH-3j-VT6"/>
                                     <constraint firstAttribute="height" constant="24" id="xJK-Nn-pcq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -257,7 +257,7 @@
                             <constraint firstItem="pcH-g1-K0L" firstAttribute="top" secondItem="4ea-ek-lRX" secondAttribute="bottom" constant="203" id="FpG-Tp-nnY"/>
                             <constraint firstItem="4ea-ek-lRX" firstAttribute="top" secondItem="fr0-xd-lll" secondAttribute="bottom" constant="99" id="Pfx-2z-jjd"/>
                             <constraint firstItem="qw8-83-wKB" firstAttribute="top" secondItem="4ea-ek-lRX" secondAttribute="bottom" constant="203" id="bKo-7x-oZc"/>
-                            <constraint firstItem="4ea-ek-lRX" firstAttribute="centerX" secondItem="ax7-ir-eKn" secondAttribute="centerX" id="fVh-A8-09u"/>
+                            <constraint firstItem="4ea-ek-lRX" firstAttribute="centerX" secondItem="ax7-ir-eKn" secondAttribute="centerX" constant="-1" id="fVh-A8-09u"/>
                             <constraint firstItem="qw8-83-wKB" firstAttribute="leading" secondItem="ax7-ir-eKn" secondAttribute="leading" constant="33.333333333333343" id="mEt-5r-m5f"/>
                             <constraint firstItem="ax7-ir-eKn" firstAttribute="bottom" secondItem="fr0-xd-lll" secondAttribute="bottom" constant="609" id="mbO-2j-MkL"/>
                             <constraint firstItem="ax7-ir-eKn" firstAttribute="trailing" secondItem="pcH-g1-K0L" secondAttribute="trailing" constant="41" id="nZd-3S-AAA"/>

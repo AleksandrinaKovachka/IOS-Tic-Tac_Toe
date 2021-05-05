@@ -18,7 +18,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.winnerNameLabel.text = self.winnerName;
+    if ([self.winnerName isEqual:@"Bot"])
+    {
+        self.winnerNameLabel.text = @"Bot is the winner";
+    } else
+    {
+        self.winnerNameLabel.text = [NSString stringWithFormat:@"Player %@ is winner", self.winnerName];
+    }
 }
 
 +(instancetype)gameOverViewControllerWithWinnerName:(NSString*)name
