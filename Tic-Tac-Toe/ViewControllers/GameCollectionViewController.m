@@ -28,7 +28,7 @@ static NSString * const reuseIdentifier = @"GameCell";
 {
     [super viewDidLoad];
     
-    self.game = [[Game alloc] initWithPlayerName:@"name" inputDelegate:self andOutputDelegate:self];
+    self.game = [[Game alloc] initWithInputDelegate:self andOutputDelegate:self];
     
 }
 
@@ -46,18 +46,18 @@ static NSString * const reuseIdentifier = @"GameCell";
 -(void)undo
 {
     [self.game undo];
-    [self draw];
+    [self.collectionView reloadData];
 }
 
 -(void)redo
 {
     [self.game redo];
-    [self draw];
+    [self.collectionView reloadData];
 }
 
--(void)setPlayerNameInGame:(NSString*)name
+-(void)setPlayerNameInGame:(NSString*)name andAnotherPlayerName:(NSString*)anotherName
 {
-    [self.game changePlayerNameWith:name];
+    [self.game changePlayerNameWith:name andAnotherPlayerName:anotherName];
 }
 
 #pragma mark <UICollectionViewDataSource>

@@ -9,6 +9,11 @@
 
 @interface UserInfoViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *anotherPlayerLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *anotherPlayerSwitchState;
+
+
+
 @end
 
 @implementation UserInfoViewController
@@ -21,7 +26,9 @@
 
 - (IBAction)onClickPlayGame:(id)sender
 {
-    [self.nameDelegate getPlayerName:self.userNameTextField.text];
+    NSString* anotherPlayer = [[NSString alloc] initWithString: self.anotherPlayerSwitchState.on == YES ? self.anotherPlayerNameTextField.text : @"Bot"];
+    
+    [self.nameDelegate getPlayerName:self.userNameTextField.text andAnotherPlayerName:anotherPlayer];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -33,6 +40,21 @@
     
     return userInfoController;
 }
+
+- (IBAction)onSwitchAnotherUser:(id)sender
+{
+    if (self.anotherPlayerSwitchState.on == YES)
+    {
+        self.anotherPlayerLabel.hidden = NO;
+        self.anotherPlayerNameTextField.hidden = NO;
+    }
+    else
+    {
+        self.anotherPlayerLabel.hidden = YES;
+        self.anotherPlayerNameTextField.hidden = YES;
+    }
+}
+
 
 /*
 #pragma mark - Navigation

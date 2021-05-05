@@ -29,6 +29,7 @@
     self.scoreLabel.text = @"Score: 0";
     
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(didChangeScore:) name:NOTIFICATION_CHANGE_SCORE object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(didSwitchPlayerName:) name:NOTIFICATION_SWITCH_PLAYER_NAME object:nil];
     
 }
 
@@ -42,15 +43,20 @@
     [self.gameDelegate redo];
 }
 
--(void)getPlayerName:(NSString*)name
+-(void)getPlayerName:(NSString*)name andAnotherPlayerName:(NSString*)anotherName
 {
     self.userNameLabel.text = name;
-    [self.gameDelegate setPlayerNameInGame:name];
+    [self.gameDelegate setPlayerNameInGame:name andAnotherPlayerName:anotherName];
 }
 
 -(void)didChangeScore:(NSNotification*)notification
 {
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", [notification.object intValue]];
+}
+
+-(void)didSwitchPlayerName:(NSNotification*)notification
+{
+    self.userNameLabel.text = notification.object;
 }
 
 

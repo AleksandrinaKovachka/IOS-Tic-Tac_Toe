@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) Board *board;
 
--(instancetype)initWithPlayerName:(NSString*)playerName inputDelegate:(id<InputDelegate>)iDelegate andOutputDelegate:(id<OutputDelegate>)oDelegate;
+-(instancetype)initWithInputDelegate:(id<InputDelegate>)iDelegate andOutputDelegate:(id<OutputDelegate>)oDelegate;
 
 -(void)makeMove;
 -(BOOL)checkWin;
@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)undo;
 -(void)redo;
 
--(void)changePlayerNameWith:(NSString*)name;
+-(void)changePlayerNameWith:(NSString*)name andAnotherPlayerName:(NSString*)anotherName;
 -(NSString*)getPlayerName;
 -(void)resetPlayerScore;
 

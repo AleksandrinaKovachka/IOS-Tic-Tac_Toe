@@ -24,7 +24,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.game = [[Game alloc] initWithPlayerName:@"Pesho" inputDelegate:self andOutputDelegate:self];
+    self.game = [[Game alloc] initWithInputDelegate:self andOutputDelegate:self];
     self.consoleBoardLabel.text = self.game.board.description;
 }
 

@@ -6,6 +6,7 @@
 //
 
 #import "Game.h"
+#import "NotificationNames.h"
 
 @interface Game()
 
@@ -22,14 +23,14 @@
 
 @implementation Game
 
--(instancetype)initWithPlayerName:(NSString*)playerName inputDelegate:(id<InputDelegate>)iDelegate andOutputDelegate:(id<OutputDelegate>)oDelegate
+-(instancetype)initWithInputDelegate:(id<InputDelegate>)iDelegate andOutputDelegate:(id<OutputDelegate>)oDelegate
 {
     if ([super init]) {
         self.board = [[Board alloc] initWithRows:3 andColumns:3];
         
-        self.playerOne = [[Player alloc] initWithName:playerName sigil:@"X" andDelegate:iDelegate];
-        self.playerTwo = [[BotEasy alloc] initWithName:@"Bot" sigil:@"O" andDelegate:self.board];
-        self.botPlayer = self.playerTwo;
+        self.playerOne = [[Player alloc] initWithName:@"userName" sigil:@"X" andDelegate:iDelegate];
+        //self.playerTwo = [[BotEasy alloc] initWithName:@"Bot" sigil:@"O" andDelegate:self.board];
+        //self.botPlayer = self.playerTwo; //bot init
         self.currentPlayer = self.playerOne;
         self.outputDelegate = oDelegate;
         self.undoStack = [[NSMutableArray alloc] init];
@@ -74,6 +75,8 @@
     {
         self.currentPlayer = self.playerOne;
     }
+    [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_SWITCH_PLAYER_NAME object:self.currentPlayer.playerName userInfo:nil];
+    //change name and score
     
     if (self.currentPlayer == self.botPlayer)
     {
@@ -125,6 +128,8 @@
     return redoMove;
 }
 
+//if have another player - undo and redo
+
 -(void)undo
 {
     if (self.playerTwo == self.botPlayer)
@@ -158,9 +163,20 @@
     [self makeMove]; //for bot
 }
 
--(void)changePlayerNameWith:(NSString*)name
+-(void)changePlayerNameWith:(NSString*)name andAnotherPlayerName:(NSString*)anotherName
 {
+    if ([anotherName isEqual:@"Bot"])
+    {
+        self.playerTwo = [[BotEasy alloc] initWithName:@"Bot" sigil:@"O" andDelegate:self.board];
+        self.botPlayer = self.playerTwo;
+    }
+    else
+    {
+        self.playerTwo = [[Player alloc] initWithName:anotherName sigil:@"O" andDelegate:self.playerOne.inputDelegate];
+    }
+    
     self.playerOne.playerName = name;
+    //self.playerTwo.playerName = anotherName;
 }
 
 -(NSString*)getPlayerName
