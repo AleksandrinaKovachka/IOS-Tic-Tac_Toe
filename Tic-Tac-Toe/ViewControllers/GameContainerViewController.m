@@ -30,6 +30,7 @@
     
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(didChangeScore:) name:NOTIFICATION_CHANGE_SCORE object:nil];
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(didSwitchPlayerName:) name:NOTIFICATION_SWITCH_PLAYER_NAME object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(didChangeScore:) name:NOTIFICATION_SWITCH_PLAYER_SCORE object:nil];
     
 }
 
@@ -45,7 +46,7 @@
 
 -(void)getPlayerName:(NSString*)name andAnotherPlayerName:(NSString*)anotherName
 {
-    self.userNameLabel.text = name;
+    self.userNameLabel.text = [NSString stringWithFormat:@"It`s %@ turn", name];
     [self.gameDelegate setPlayerNameInGame:name andAnotherPlayerName:anotherName];
 }
 
@@ -56,8 +57,9 @@
 
 -(void)didSwitchPlayerName:(NSNotification*)notification
 {
-    self.userNameLabel.text = notification.object;
+    self.userNameLabel.text = [NSString stringWithFormat:@"It`s %@ turn", notification.object];
 }
+
 
 
 #pragma mark - Navigation

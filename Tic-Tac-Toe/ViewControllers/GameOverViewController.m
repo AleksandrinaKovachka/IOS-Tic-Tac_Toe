@@ -20,10 +20,15 @@
     
     if ([self.winnerName isEqual:@"Bot"])
     {
-        self.winnerNameLabel.text = @"Bot is the winner";
-    } else
+        self.winnerNameLabel.text = @"Bot is the winner!";
+    }
+    else if ([self.winnerName isEqual:@"Full"])
     {
-        self.winnerNameLabel.text = [NSString stringWithFormat:@"Player %@ is winner", self.winnerName];
+        self.winnerNameLabel.text = @"Equality!";
+    }
+    else //if is full
+    {
+        self.winnerNameLabel.text = [NSString stringWithFormat:@"Player %@ is winner!", self.winnerName];
     }
 }
 

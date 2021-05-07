@@ -76,7 +76,7 @@
         self.currentPlayer = self.playerOne;
     }
     [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_SWITCH_PLAYER_NAME object:self.currentPlayer.playerName userInfo:nil];
-    //change name and score
+    [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_SWITCH_PLAYER_SCORE object:[NSNumber numberWithInt:self.currentPlayer.score] userInfo:nil];
     
     if (self.currentPlayer == self.botPlayer)
     {
@@ -97,7 +97,7 @@
 -(NSString*)gameOver
 {
     if (self.board.isFull) {
-        return @"Game is over. The board is full!";
+        return @"Full";
     }
     return self.currentPlayer.playerName;
 }
@@ -177,11 +177,6 @@
     
     self.playerOne.playerName = name;
     //self.playerTwo.playerName = anotherName;
-}
-
--(NSString*)getPlayerName
-{
-    return self.currentPlayer.playerName;
 }
 
 -(void)resetPlayerScore

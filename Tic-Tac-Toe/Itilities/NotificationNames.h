@@ -12,5 +12,7 @@
 
 #define NOTIFICATION_SWITCH_PLAYER_NAME @"SwitchPlayerNameNotification"
 
+#define NOTIFICATION_SWITCH_PLAYER_SCORE @"SwitchPlayerScoreNotification"
+
 
 #endif /* NotificationNames_h */

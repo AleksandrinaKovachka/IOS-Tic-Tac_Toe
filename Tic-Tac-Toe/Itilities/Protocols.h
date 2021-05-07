@@ -26,6 +26,7 @@
 
 -(void)getPlayerName:(NSString*)name andAnotherPlayerName:(NSString*)anotherName;
 
+
 @end
 
 @protocol GameDelegate <NSObject>

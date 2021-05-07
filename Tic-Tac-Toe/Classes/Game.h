@@ -28,7 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)redo;
 
 -(void)changePlayerNameWith:(NSString*)name andAnotherPlayerName:(NSString*)anotherName;
--(NSString*)getPlayerName;
 -(void)resetPlayerScore;
 
 
