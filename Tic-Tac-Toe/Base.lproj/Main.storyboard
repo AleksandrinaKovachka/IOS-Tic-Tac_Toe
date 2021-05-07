@@ -394,12 +394,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="rx3-DH-Tdr">
                         <rightBarButtonItems>
-                            <barButtonItem title="Redo" id="uLb-Bf-oaA">
+                            <barButtonItem enabled="NO" title="Redo" id="uLb-Bf-oaA">
                                 <connections>
                                     <action selector="onClickRedo:" destination="tJa-0x-pik" id="BaX-7m-hEZ"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Undo" id="W24-l2-gAC">
+                            <barButtonItem enabled="NO" title="Undo" id="W24-l2-gAC">
                                 <connections>
                                     <action selector="onClickUndo:" destination="tJa-0x-pik" id="Evj-BE-efG"/>
                                 </connections>
@@ -407,7 +407,9 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="redoBtn" destination="uLb-Bf-oaA" id="QQj-WU-DOk"/>
                         <outlet property="scoreLabel" destination="QYa-Ww-wOc" id="sa1-qV-0Yz"/>
+                        <outlet property="undoBtn" destination="W24-l2-gAC" id="8Mh-1F-P12"/>
                         <outlet property="userNameLabel" destination="atj-lK-i5V" id="Bq6-RO-sRg"/>
                     </connections>
                 </viewController>

@@ -14,5 +14,12 @@
 
 #define NOTIFICATION_SWITCH_PLAYER_SCORE @"SwitchPlayerScoreNotification"
 
+#define NOTIFICATION_PUSH_IN_UNDO @"PushInUndoNotification"
+
+#define NOTIFICATION_PUSH_IN_REDO @"PushInRedoNotification"
+
+#define NOTIFICATION_EMPTY_UNDO @"EmptyUndoNotification"
+
+#define NOTIFICATION_EMPTY_REDO @"EmptyRedoNotification"
 
 #endif /* NotificationNames_h */

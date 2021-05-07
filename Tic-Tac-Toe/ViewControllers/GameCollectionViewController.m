@@ -100,6 +100,8 @@ static NSString * const reuseIdentifier = @"GameCell";
     self.lastSelected = (int) indexPath.item;
     //cell.selected = YES;
     [self.game makeMove];
+    //undo enable true
+    
 }
 
 

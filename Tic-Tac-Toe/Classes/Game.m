@@ -17,6 +17,8 @@
 @property (strong, nonatomic) NSMutableArray<Move*>* undoStack;
 @property (strong, nonatomic) NSMutableArray<Move*>* redoStack;
 
+//TODO: if stack is empty
+
 @property (weak, nonatomic) id<OutputDelegate> outputDelegate;
 
 @end
@@ -67,6 +69,18 @@
         return;
     }
     
+    [self changePlayer];
+    
+    if (self.currentPlayer == self.botPlayer)
+    {
+        [self makeMove];
+    }
+    
+    [self.outputDelegate draw];
+}
+
+-(void)changePlayer
+{
     if (self.currentPlayer == self.playerOne)
     {
         self.currentPlayer = self.playerTwo;
@@ -77,13 +91,6 @@
     }
     [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_SWITCH_PLAYER_NAME object:self.currentPlayer.playerName userInfo:nil];
     [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_SWITCH_PLAYER_SCORE object:[NSNumber numberWithInt:self.currentPlayer.score] userInfo:nil];
-    
-    if (self.currentPlayer == self.botPlayer)
-    {
-        [self makeMove];
-    }
-    
-    [self.outputDelegate draw];
 }
 
 -(BOOL)checkWin {
@@ -104,18 +111,24 @@
 
 -(void)pushMove:(Move*)move
 {
-    [self.undoStack addObject:move];
+    [self.undoStack addObject:move]; // undo enable = yes
+    [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_PUSH_IN_UNDO object:nil userInfo:nil];
 }
 
 -(void)pushInRedo:(Move*)undoMove
 {
-    [self.redoStack addObject:undoMove];
+    [self.redoStack addObject:undoMove]; //redo enable = yes
+    [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_PUSH_IN_REDO object:nil userInfo:nil];
 }
 
 -(Move*)popFromUndo
 {
     Move* undoMove = self.undoStack.lastObject;
     [self.undoStack removeLastObject];
+    
+    if (self.undoStack.count == 0) {
+        [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_EMPTY_UNDO object:nil userInfo:nil];
+    }
     
     return undoMove;
 }
@@ -125,10 +138,12 @@
     Move* redoMove = self.redoStack.lastObject;
     [self.redoStack removeLastObject];
     
+    if (self.redoStack.count == 0) {
+        [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_EMPTY_REDO object:nil userInfo:nil];
+    }
+    
     return redoMove;
 }
-
-//if have another player - undo and redo
 
 -(void)undo
 {
@@ -138,11 +153,15 @@
         Move* undoMoveBot = moveBot.opposite;
         [self.board setMoveCoordinates:undoMoveBot.coordinates andState:undoMoveBot.currentState];
     }
-    
+    else
+    {
+        [self changePlayer];
+    }
+       
     Move* move = [self popFromUndo];
     Move* undoMove = move.opposite;
     [self.board setMoveCoordinates:undoMove.coordinates andState:undoMove.currentState];
-    [self.playerOne changeScoreWith:(-1)];
+    [self.currentPlayer changeScoreWith:(-1)];
 
     [self pushInRedo:move];
 }
@@ -153,14 +172,13 @@
     [self.board setMoveCoordinates:move.coordinates andState:move.currentState];
     [self pushMove:move];
     [self.playerOne changeScoreWith:1];
+
+    [self changePlayer];
     
-    //change player
-    if (self.currentPlayer == self.playerOne)
+    if (self.playerTwo == self.botPlayer)
     {
-        self.currentPlayer = self.playerTwo;
+        [self makeMove];
     }
-    
-    [self makeMove]; //for bot
 }
 
 -(void)changePlayerNameWith:(NSString*)name andAnotherPlayerName:(NSString*)anotherName
@@ -176,7 +194,6 @@
     }
     
     self.playerOne.playerName = name;
-    //self.playerTwo.playerName = anotherName;
 }
 
 -(void)resetPlayerScore
