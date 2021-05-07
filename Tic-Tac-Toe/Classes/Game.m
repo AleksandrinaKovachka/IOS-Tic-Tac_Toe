@@ -31,8 +31,6 @@
         self.board = [[Board alloc] initWithRows:3 andColumns:3];
         
         self.playerOne = [[Player alloc] initWithName:@"userName" sigil:@"X" andDelegate:iDelegate];
-        //self.playerTwo = [[BotEasy alloc] initWithName:@"Bot" sigil:@"O" andDelegate:self.board];
-        //self.botPlayer = self.playerTwo; //bot init
         self.currentPlayer = self.playerOne;
         self.outputDelegate = oDelegate;
         self.undoStack = [[NSMutableArray alloc] init];
@@ -111,13 +109,13 @@
 
 -(void)pushMove:(Move*)move
 {
-    [self.undoStack addObject:move]; // undo enable = yes
+    [self.undoStack addObject:move];
     [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_PUSH_IN_UNDO object:nil userInfo:nil];
 }
 
 -(void)pushInRedo:(Move*)undoMove
 {
-    [self.redoStack addObject:undoMove]; //redo enable = yes
+    [self.redoStack addObject:undoMove];
     [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_PUSH_IN_REDO object:nil userInfo:nil];
 }
 

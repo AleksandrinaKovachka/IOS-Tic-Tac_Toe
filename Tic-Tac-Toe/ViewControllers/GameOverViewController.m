@@ -26,7 +26,7 @@
     {
         self.winnerNameLabel.text = @"Equality!";
     }
-    else //if is full
+    else
     {
         self.winnerNameLabel.text = [NSString stringWithFormat:@"Player %@ is winner!", self.winnerName];
     }
@@ -38,7 +38,6 @@
     GameOverViewController* gameOverController = [storyboard instantiateViewControllerWithIdentifier:@"GameOverID"];
     
     gameOverController.winnerName = name;
-    //id delegate
     
     return gameOverController;
 }

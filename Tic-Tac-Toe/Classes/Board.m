@@ -57,28 +57,6 @@
     return [NSString stringWithString:boardToString];
 }
 
-/*-(NSArray<NSString*>*)stateDescription
-{
-    NSMutableArray<NSString*>* boardStates = [[NSMutableArray alloc] init];
-    //NSMutableString* imageName = [[NSMutableString alloc] init];
-    for (int i = 0; i < self.cells.count; ++i) {
-        if (self.cells[i].state == EnumCellStateX)
-        {
-            [boardStates addObject: @"X"];
-        }
-        else if (self.cells[i].state == EnumCellStateO)
-        {
-            [boardStates addObject: @"O"];
-        }
-        else
-        {
-            [boardStates addObject: @"None"];
-        }
-    }
-    
-    return [NSArray arrayWithArray:boardStates];
-}*/
-
 -(NSArray<NSNumber*>*)stateDescription
 {
     NSMutableArray<NSNumber*>* boardStates = [[NSMutableArray alloc] init];
@@ -102,7 +80,7 @@
 
 -(BOOL)hasNoGapsRow
 {
-    int count = 1;
+    /*int count = 1;
     for (int i = 0; i < self.cells.count; ++i)
     {
         if (count == self.columns)
@@ -124,12 +102,32 @@
         ++count;
     }
     
+    return NO;*/
+    
+    BOOL hasNoGaps = YES;
+    
+    for (int i = 0; i < self.rows; ++i)
+    {
+        hasNoGaps = YES;
+        for (int j = 0; j < self.columns - 1; ++j)
+        {
+            if ([self cellAtX:i andY:j].state != [self cellAtX:i andY:j + 1].state)
+            {
+                hasNoGaps = NO;
+            }
+        }
+        if (hasNoGaps && [self cellAtX:i andY:i].state != EnumCellStateEmpty)
+        {
+            return YES;
+        }
+    }
+    
     return NO;
 }
 
 -(BOOL)hasNoGapsColumn
 {
-    BOOL hasNoGaps = YES;
+    /*BOOL hasNoGaps = YES;
     int count = self.columns - 1;
     for (int i = 0; i < self.columns; ++i)
     {
@@ -150,12 +148,32 @@
         --count;
     }
     
+    return NO;*/
+    
+    BOOL hasNoGaps = YES;
+    
+    for (int j = 0; j < self.columns; ++j)
+    {
+        hasNoGaps = YES;
+        for (int i = 0; i < self.rows - 1; ++i) {
+            if ([self cellAtX:i andY:j].state != [self cellAtX:i + 1 andY:j].state)
+            {
+                hasNoGaps = NO;
+            }
+        }
+        
+        if (hasNoGaps && [self cellAtX:j andY:j].state != EnumCellStateEmpty)
+        {
+            return YES;
+        }
+    }
+    
     return NO;
 }
 
 -(BOOL)hasNoGapsDiagonal
 {
-    BOOL hasNoGaps = YES;
+    /*BOOL hasNoGaps = YES;
     for (int i = 0; i < self.cells.count - 1; i += self.columns + 1)
     {
         if (self.cells[i].state != self.cells[i + self.columns + 1].state)
@@ -177,6 +195,38 @@
     
     if (hasNoGaps && self.cells[self.cells.count - 1].state != EnumCellStateEmpty) {
         return YES;
+    }
+    
+    return NO;*/
+    
+    BOOL hasNoGaps = YES;
+    int count = self.columns;
+    
+    for (int i = 0; i < self.rows - 1; ++i)
+    {
+        if ([self cellAtX:i andY:i].state != [self cellAtX:i + 1 andY:i + 1].state)
+        {
+            hasNoGaps = NO;
+        }
+    }
+    
+    if (hasNoGaps && [self cellAtX:0 andY:0].state != EnumCellStateEmpty)
+    {
+        return  YES;
+    }
+    
+    for (int i = 0; i < self.rows - 1; ++i)
+    {
+        --count;
+        if ([self cellAtX:i andY:count].state != [self cellAtX:i + 1 andY: count - 1].state)
+        {
+            hasNoGaps = NO;
+        }
+    }
+    
+    if (hasNoGaps && [self cellAtX:self.rows - 1 andY:self.rows - 1].state != EnumCellStateEmpty)
+    {
+        return  YES;
     }
     
     return NO;

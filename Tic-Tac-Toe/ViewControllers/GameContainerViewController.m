@@ -41,7 +41,6 @@
     
 }
 
-//TODO: if stack is empty
 - (IBAction)onClickUndo:(id)sender
 {
     [self.gameDelegate undo];

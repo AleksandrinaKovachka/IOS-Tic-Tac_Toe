@@ -5,9 +5,6 @@
 //  Created by A-Team Intern on 23.04.21.
 //
 
-//TODO: score of player and name
-//TODO: buttons undo and redo
-
 #import "GameCollectionViewController.h"
 #import "Game.h"
 #import "GameCollectionViewCell.h"
@@ -100,7 +97,6 @@ static NSString * const reuseIdentifier = @"GameCell";
     self.lastSelected = (int) indexPath.item;
     //cell.selected = YES;
     [self.game makeMove];
-    //undo enable true
     
 }
 
@@ -132,7 +128,7 @@ static NSString * const reuseIdentifier = @"GameCell";
 
 -(void)drawGameOver
 {
-    GameOverViewController* winner = [GameOverViewController gameOverViewControllerWithWinnerName:self.game.gameOver]; // if is full
+    GameOverViewController* winner = [GameOverViewController gameOverViewControllerWithWinnerName:self.game.gameOver];
     
     [self presentViewController:winner animated:YES completion: ^{
         [self.game resetPlayerScore];
@@ -140,11 +136,6 @@ static NSString * const reuseIdentifier = @"GameCell";
         [self.collectionView reloadData];
     }];
 }
-
-/*-(void)drawErrorState
-{
-    self.consoleBoardLabel.text = [@"Not valid input!\n" stringByAppendingString:[NSString stringWithFormat:@"%@", self.game.board]];
-}*/
 
 
 #pragma mark <UICollectionViewDelegate>
