@@ -56,7 +56,8 @@
         state = EnumCellStateO;
     }
     
-    [self pushMove:[[Move alloc] initWithCoordinates:coords andCurrentState:state andPreviousState:EnumCellStateEmpty]];
+    [self pushMoveInUndo:[[Move alloc] initWithCoordinates:coords andCurrentState:state andPreviousState:EnumCellStateEmpty]];
+    [self clearRedoStack];
 
     [self.board setMoveCoordinates:coords andState:state];
     
@@ -107,13 +108,13 @@
     return self.currentPlayer.playerName;
 }
 
--(void)pushMove:(Move*)move
+-(void)pushMoveInUndo:(Move*)move
 {
     [self.undoStack addObject:move];
     [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_PUSH_IN_UNDO object:nil userInfo:nil];
 }
 
--(void)pushInRedo:(Move*)undoMove
+-(void)pushMoveInRedo:(Move*)undoMove
 {
     [self.redoStack addObject:undoMove];
     [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_PUSH_IN_REDO object:nil userInfo:nil];
@@ -150,6 +151,8 @@
         Move* moveBot = [self popFromUndo];
         Move* undoMoveBot = moveBot.opposite;
         [self.board setMoveCoordinates:undoMoveBot.coordinates andState:undoMoveBot.currentState];
+        
+        [self pushMoveInRedo:moveBot];
     }
     else
     {
@@ -161,21 +164,24 @@
     [self.board setMoveCoordinates:undoMove.coordinates andState:undoMove.currentState];
     [self.currentPlayer changeScoreWith:(-1)];
 
-    [self pushInRedo:move];
+    [self pushMoveInRedo:move];
 }
 
 -(void)redo
 {
     Move* move = [self popFromRedo];
     [self.board setMoveCoordinates:move.coordinates andState:move.currentState];
-    [self pushMove:move];
+    [self pushMoveInUndo:move];
     [self.playerOne changeScoreWith:1];
 
     [self changePlayer];
     
     if (self.playerTwo == self.botPlayer)
     {
-        [self makeMove];
+        Move* moveBot = [self popFromRedo];
+        [self.board setMoveCoordinates:moveBot.coordinates andState:moveBot.currentState];
+        [self pushMoveInUndo:moveBot];
+        [self changePlayer];
     }
 }
 
@@ -194,16 +200,25 @@
     self.playerOne.playerName = name;
 }
 
+-(void)clearUndoStack
+{
+    [self.undoStack removeAllObjects];
+    [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_EMPTY_UNDO object:nil userInfo:nil];
+}
+
+-(void)clearRedoStack
+{
+    [self.redoStack removeAllObjects];
+    [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_EMPTY_REDO object:nil userInfo:nil];
+}
+
 -(void)resetPlayers
 {
     [self.playerOne changeScoreWith:0];
     [self.playerTwo changeScoreWith:0];
     
-    [self.undoStack removeAllObjects];
-    [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_EMPTY_UNDO object:nil userInfo:nil];
-    
-    [self.redoStack removeAllObjects];
-    [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_EMPTY_REDO object:nil userInfo:nil];
+    [self clearUndoStack];
+    [self clearRedoStack];
 }
 
 @end
