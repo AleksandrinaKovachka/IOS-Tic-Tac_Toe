@@ -78,6 +78,12 @@
     [self setMoveWithCordX:coordinates[0].intValue cordY:coordinates[1].intValue andState:state];
 }
 
+-(void)setMoveCoordinates:(NSArray<NSNumber*>*)coordinates
+{
+    Cell *cell = [self cellAtX:coordinates[0].intValue andY:coordinates[1].intValue];
+    [cell changeState];
+}
+
 -(BOOL)hasNoGapsRow
 {
     /*int count = 1;
@@ -243,7 +249,7 @@
 
 -(BOOL)isFull {
     for (int i = 0; i < self.cells.count; ++i) {
-        if (self.cells[i].state == EnumCellStateEmpty) {
+        if (self.cells[i].state == EnumCellStateEmpty || self.cells[i].state == EnumCellStateGreen || self.cells[i].state == EnumCellStateYellow) {
             return NO;
         }
     }
@@ -260,7 +266,7 @@
     NSMutableArray<NSArray<NSNumber *> *> *coordinates = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < self.cells.count; ++i) {
-        if (self.cells[i].state == EnumCellStateEmpty) {
+        if (self.cells[i].state == EnumCellStateEmpty || self.cells[i].state == EnumCellStateGreen || self.cells[i].state == EnumCellStateYellow) {
             [coordinates addObject:self.cells[i].coordinates];
         }
     }
@@ -268,14 +274,14 @@
     return coordinates;
 }
 
--(BOOL)isFreeCellWithX:(int)x andY:(int)y
+/*-(BOOL)isFreeCellWithX:(int)x andY:(int)y
 {
     if ([self cellAtX:x andY:y].state == EnumCellStateEmpty) {
         return YES;
     }
     
     return NO;
-}
+}*/
 
 -(int)columnsCount
 {

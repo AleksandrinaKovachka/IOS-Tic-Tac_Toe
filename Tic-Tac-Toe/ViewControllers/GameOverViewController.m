@@ -47,10 +47,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)onClickExit:(id)sender
-{
-    exit(0);
-}
 
 
 /*

@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) int score;
 @property (weak, nonatomic) id<InputDelegate> inputDelegate;
 
--(instancetype)initWithName:(NSString*)playerName sigil:(NSString *)sigil andDelegate:(id<InputDelegate>)delegate;
+-(instancetype)initWithName:(NSString*)playerName andDelegate:(id<InputDelegate>)delegate;
 -(NSArray<NSNumber *> *)makeMove;
 -(void)changeScoreWith:(int)value;
 

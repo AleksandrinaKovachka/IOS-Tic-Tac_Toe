@@ -24,13 +24,19 @@
     // Do any additional setup after loading the view.
 }
 
-- (IBAction)onClickPlayGame:(id)sender
+- (IBAction)onClickPlayTicTacToew:(id)sender
 {
     NSString* anotherPlayer = [[NSString alloc] initWithString: self.anotherPlayerSwitchState.on == YES ? self.anotherPlayerNameTextField.text : @"Bot"];
     
     [self.nameDelegate getPlayerName:self.userNameTextField.text andAnotherPlayerName:anotherPlayer];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (IBAction)onClickPlayTunakTunakTun:(id)sender
+{
+    
+}
+
 
 +(instancetype)viewControllerFromStoryboardWithNameDelegate:(id<UserNameDelegate>)nameDelegate
 {

@@ -7,7 +7,6 @@
 
 #import "Cell.h"
 
-// Code Review: always prefer automatically synthesized properties to manually creating
 @interface Cell ()
 
 @property (assign) int x;
@@ -28,14 +27,30 @@
     return self;
 }
 
-// Code Review: always prefer explicitly typed collections to generic
--(NSArray<NSNumber *> *)coordinates {
-    // Code Review: always name your variables properly
+-(NSArray<NSNumber *> *)coordinates
+{
     NSMutableArray<NSNumber *> *coordinatesArray = [[NSMutableArray alloc] init];
     [coordinatesArray addObject:@(self.x)];
     [coordinatesArray addObject:@(self.y)];
     
     return coordinatesArray;
+}
+
+-(void)changeState
+{
+    if (self.state == EnumCellStateEmpty)
+    {
+        self.state = EnumCellStateGreen;
+    }
+    else if(self.state == EnumCellStateGreen)
+    {
+        self.state = EnumCellStateYellow;
+    }
+    else if(self.state == EnumCellStateYellow)
+    {
+        self.state = EnumCellStateRed;
+        //notification to enable box
+    }
 }
 
 

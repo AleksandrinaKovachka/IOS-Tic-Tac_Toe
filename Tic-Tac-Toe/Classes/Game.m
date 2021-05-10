@@ -17,8 +17,6 @@
 @property (strong, nonatomic) NSMutableArray<Move*>* undoStack;
 @property (strong, nonatomic) NSMutableArray<Move*>* redoStack;
 
-//TODO: if stack is empty
-
 @property (weak, nonatomic) id<OutputDelegate> outputDelegate;
 
 @end
@@ -30,7 +28,7 @@
     if ([super init]) {
         self.board = [[Board alloc] initWithRows:3 andColumns:3];
         
-        self.playerOne = [[Player alloc] initWithName:@"userName" sigil:@"X" andDelegate:iDelegate];
+        self.playerOne = [[Player alloc] initWithName:@"userName" andDelegate:iDelegate];
         self.currentPlayer = self.playerOne;
         self.outputDelegate = oDelegate;
         self.undoStack = [[NSMutableArray alloc] init];
@@ -59,7 +57,7 @@
     [self pushMoveInUndo:[[Move alloc] initWithCoordinates:coords andCurrentState:state andPreviousState:EnumCellStateEmpty]];
     [self clearRedoStack];
 
-    [self.board setMoveCoordinates:coords andState:state];
+    [self.board setMoveCoordinates:coords andState:state]; //TODO: without state
     
     if (self.board.isFull || self.checkWin)
     {
@@ -189,12 +187,12 @@
 {
     if ([anotherName isEqual:@"Bot"])
     {
-        self.playerTwo = [[BotEasy alloc] initWithName:@"Bot" sigil:@"O" andDelegate:self.board];
+        self.playerTwo = [[BotEasy alloc] initWithName:@"Bot" andDelegate:self.board];
         self.botPlayer = self.playerTwo;
     }
     else
     {
-        self.playerTwo = [[Player alloc] initWithName:anotherName sigil:@"O" andDelegate:self.playerOne.inputDelegate];
+        self.playerTwo = [[Player alloc] initWithName:anotherName andDelegate:self.playerOne.inputDelegate];
     }
     
     self.playerOne.playerName = name;

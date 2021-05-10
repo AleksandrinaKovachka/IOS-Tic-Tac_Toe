@@ -82,9 +82,21 @@ static NSString * const reuseIdentifier = @"GameCell";
     {
         imageName = @"X";
     }
-    else
+    else if (boardStates[indexPath.item].intValue == 2)
     {
         imageName = @"O";
+    }
+    else if (boardStates[indexPath.item].intValue == 3)
+    {
+        imageName = @"Green";
+    }
+    else if (boardStates[indexPath.item].intValue == 4)
+    {
+        imageName = @"Yellow";
+    }
+    else if (boardStates[indexPath.item].intValue == 5)
+    {
+        imageName = @"Red";
     }
 
     cell.stateImages.image = [UIImage imageNamed:imageName];

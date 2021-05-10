@@ -16,7 +16,7 @@
 
 @implementation Player
 
--(instancetype)initWithName:(NSString*)playerName sigil:(NSString *)sigil andDelegate:(id<InputDelegate>)delegate
+-(instancetype)initWithName:(NSString*)playerName andDelegate:(id<InputDelegate>)delegate
 {
     if ([super init])
     {
