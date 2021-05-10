@@ -131,7 +131,7 @@ static NSString * const reuseIdentifier = @"GameCell";
     GameOverViewController* winner = [GameOverViewController gameOverViewControllerWithWinnerName:self.game.gameOver];
     
     [self presentViewController:winner animated:YES completion: ^{
-        [self.game resetPlayerScore];
+        [self.game resetPlayers];
         [self.game.board clearBoard];
         [self.collectionView reloadData];
     }];

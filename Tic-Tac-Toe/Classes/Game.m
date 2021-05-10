@@ -194,9 +194,16 @@
     self.playerOne.playerName = name;
 }
 
--(void)resetPlayerScore
+-(void)resetPlayers
 {
     [self.playerOne changeScoreWith:0];
+    [self.playerTwo changeScoreWith:0];
+    
+    [self.undoStack removeAllObjects];
+    [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_EMPTY_UNDO object:nil userInfo:nil];
+    
+    [self.redoStack removeAllObjects];
+    [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_EMPTY_REDO object:nil userInfo:nil];
 }
 
 @end
