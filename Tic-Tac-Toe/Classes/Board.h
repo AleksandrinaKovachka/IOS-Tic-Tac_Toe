@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString*)description;
 -(NSArray<NSNumber*>*)stateDescription;
 -(void)setMoveCoordinates:(NSArray<NSNumber*>*)coordinates andState:(EnumCellState)state;
--(void)setMoveCoordinates:(NSArray<NSNumber*>*)coordinates;
+//-(void)setMoveCoordinates:(NSArray<NSNumber*>*)coordinates;
 -(BOOL)hasNoGapsRow;
 -(BOOL)hasNoGapsColumn;
 -(BOOL)hasNoGapsDiagonal;
@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(int)columnsCount;
 -(int)boardCount;
 -(void)clearBoard;
+-(EnumCellState)currentCellState:(NSArray<NSNumber*>*)coordinates;
+-(EnumCellState)changeCellState:(NSArray<NSNumber*>*)coordinates;
 
 @end
 

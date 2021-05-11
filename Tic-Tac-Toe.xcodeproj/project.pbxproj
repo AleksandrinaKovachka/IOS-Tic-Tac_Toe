@@ -26,6 +26,8 @@
 		8EBBEFA426382E8500F60244 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBBEFA326382E8500F60244 /* UserInfoViewController.m */; };
 		8EBBEFA8263851C600F60244 /* Move.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBBEFA7263851C600F60244 /* Move.m */; };
 		8EC2316A263AAA3A008EACBE /* GameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC23169263AAA3A008EACBE /* GameOverViewController.m */; };
+		8EC2316F264A676F008EACBE /* TicTacToeGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC2316E264A676F008EACBE /* TicTacToeGame.m */; };
+		8EC23173264A68F4008EACBE /* TunakTunakTunGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC23172264A68F4008EACBE /* TunakTunakTunGame.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +69,10 @@
 		8EC231632639808C008EACBE /* NotificationNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationNames.h; sourceTree = "<group>"; };
 		8EC23168263AAA3A008EACBE /* GameOverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameOverViewController.h; sourceTree = "<group>"; };
 		8EC23169263AAA3A008EACBE /* GameOverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameOverViewController.m; sourceTree = "<group>"; };
+		8EC2316D264A676F008EACBE /* TicTacToeGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TicTacToeGame.h; sourceTree = "<group>"; };
+		8EC2316E264A676F008EACBE /* TicTacToeGame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TicTacToeGame.m; sourceTree = "<group>"; };
+		8EC23171264A68F4008EACBE /* TunakTunakTunGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TunakTunakTunGame.h; sourceTree = "<group>"; };
+		8EC23172264A68F4008EACBE /* TunakTunakTunGame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TunakTunakTunGame.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +138,10 @@
 				8EBBEF86262EAFFB00F60244 /* Cell.m */,
 				8EBBEFA6263851C500F60244 /* Move.h */,
 				8EBBEFA7263851C600F60244 /* Move.m */,
+				8EC2316D264A676F008EACBE /* TicTacToeGame.h */,
+				8EC2316E264A676F008EACBE /* TicTacToeGame.m */,
+				8EC23171264A68F4008EACBE /* TunakTunakTunGame.h */,
+				8EC23172264A68F4008EACBE /* TunakTunakTunGame.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -234,11 +244,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EBBEF9C2632CC1300F60244 /* GameCollectionViewCell.m in Sources */,
+				8EC23173264A68F4008EACBE /* TunakTunakTunGame.m in Sources */,
 				8EBBEF6B262990F500F60244 /* Board.m in Sources */,
 				8E580C1326245F7E0015F22C /* ViewController.m in Sources */,
 				8E580C0D26245F7E0015F22C /* AppDelegate.m in Sources */,
 				8E580C1E26245F7F0015F22C /* main.m in Sources */,
 				8EBBEFA426382E8500F60244 /* UserInfoViewController.m in Sources */,
+				8EC2316F264A676F008EACBE /* TicTacToeGame.m in Sources */,
 				8EBBEF73262D7C7E00F60244 /* ConsoleViewController.m in Sources */,
 				8EBBEF87262EAFFB00F60244 /* Cell.m in Sources */,
 				8EC2316A263AAA3A008EACBE /* GameOverViewController.m in Sources */,

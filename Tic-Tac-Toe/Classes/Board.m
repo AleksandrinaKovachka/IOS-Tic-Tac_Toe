@@ -78,11 +78,11 @@
     [self setMoveWithCordX:coordinates[0].intValue cordY:coordinates[1].intValue andState:state];
 }
 
--(void)setMoveCoordinates:(NSArray<NSNumber*>*)coordinates
+/*-(void)setMoveCoordinates:(NSArray<NSNumber*>*)coordinates
 {
     Cell *cell = [self cellAtX:coordinates[0].intValue andY:coordinates[1].intValue];
-    [cell changeState];
-}
+    //[cell changeState];
+}*/
 
 -(BOOL)hasNoGapsRow
 {
@@ -299,6 +299,21 @@
     {
         self.cells[i].state = EnumCellStateEmpty;
     }
+}
+
+-(EnumCellState)currentCellState:(NSArray<NSNumber*>*)coordinates
+{
+    Cell *cell = [self cellAtX:coordinates[0].intValue andY:coordinates[1].intValue];
+    
+    return cell.state;
+}
+
+-(EnumCellState)changeCellState:(NSArray<NSNumber*>*)coordinates
+{
+    Cell *cell = [self cellAtX:coordinates[0].intValue andY:coordinates[1].intValue];
+    [cell changeState];
+    
+    return cell.state;
 }
 
 @end

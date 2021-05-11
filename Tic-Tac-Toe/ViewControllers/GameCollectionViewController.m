@@ -7,12 +7,16 @@
 
 #import "GameCollectionViewController.h"
 #import "Game.h"
+#import "TicTacToeGame.h"
+#import "TunakTunakTunGame.h"
 #import "GameCollectionViewCell.h"
 #import "GameOverViewController.h"
 
 @interface GameCollectionViewController ()
 
-@property (strong, nonatomic) Game* game;
+@property (strong, nonatomic) Game* curGame;
+@property (strong, nonatomic) Game* ticTacToeGame;
+@property (strong, nonatomic) Game* tunakTunakTunGame;
 @property (assign) int lastSelected;
 
 @end
@@ -25,8 +29,23 @@ static NSString * const reuseIdentifier = @"GameCell";
 {
     [super viewDidLoad];
     
-    self.game = [[Game alloc] initWithInputDelegate:self andOutputDelegate:self];
+    self.ticTacToeGame = [[TicTacToeGame alloc] initWithInputDelegate:self andOutputDelegate:self];
+    self.tunakTunakTunGame = [[TunakTunakTunGame alloc] initWithInputDelegate:self andOutputDelegate:self];
     
+    self.curGame = self.ticTacToeGame;
+    
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(didChooseTicTacToeGame:) name:NOTIFICATION_TIC_TAC_TOE_GAME object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(didChooseTunakTunakTunGame:) name:NOTIFICATION_TUNAK_TUNAK_TUN_GAME object:nil];
+}
+
+-(void)didChooseTicTacToeGame:(NSNotification*)notification
+{
+    self.curGame = self.ticTacToeGame;
+}
+
+-(void)didChooseTunakTunakTunGame:(NSNotification*)notification
+{
+    self.curGame = self.tunakTunakTunGame;
 }
 
 /*
@@ -42,19 +61,19 @@ static NSString * const reuseIdentifier = @"GameCell";
 
 -(void)undo
 {
-    [self.game undo];
+    [self.curGame undo];
     [self.collectionView reloadData];
 }
 
 -(void)redo
 {
-    [self.game redo];
+    [self.curGame redo];
     [self.collectionView reloadData];
 }
 
 -(void)setPlayerNameInGame:(NSString*)name andAnotherPlayerName:(NSString*)anotherName
 {
-    [self.game changePlayerNameWith:name andAnotherPlayerName:anotherName];
+    [self.curGame changePlayerNameWith:name andAnotherPlayerName:anotherName];
 }
 
 #pragma mark <UICollectionViewDataSource>
@@ -65,13 +84,13 @@ static NSString * const reuseIdentifier = @"GameCell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.game.board.boardCount;
+    return self.curGame.board.boardCount;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     GameCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GameCell" forIndexPath:indexPath];
     
-    NSArray<NSNumber*>* boardStates = self.game.board.stateDescription;
+    NSArray<NSNumber*>* boardStates = self.curGame.board.stateDescription;
     NSString* imageName;
     
     if (boardStates[indexPath.item].intValue == 0)
@@ -108,7 +127,7 @@ static NSString * const reuseIdentifier = @"GameCell";
 {
     self.lastSelected = (int) indexPath.item;
     //cell.selected = YES;
-    [self.game makeMove];
+    [self.curGame makeMove];
     
 }
 
@@ -121,8 +140,8 @@ static NSString * const reuseIdentifier = @"GameCell";
 
 - (NSArray<NSArray<NSNumber *> *> *)moveCoordinates
 {
-    int cordX = self.lastSelected / self.game.board.columnsCount;
-    int cordY = self.lastSelected % self.game.board.columnsCount;
+    int cordX = self.lastSelected / self.curGame.board.columnsCount;
+    int cordY = self.lastSelected % self.curGame.board.columnsCount;
     
     if (cordY == 0 && cordX == 0)
     {
@@ -140,11 +159,11 @@ static NSString * const reuseIdentifier = @"GameCell";
 
 -(void)drawGameOver
 {
-    GameOverViewController* winner = [GameOverViewController gameOverViewControllerWithWinnerName:self.game.gameOver];
+    GameOverViewController* winner = [GameOverViewController gameOverViewControllerWithWinnerName:self.curGame.gameOver];
     
     [self presentViewController:winner animated:YES completion: ^{
-        [self.game resetPlayers];
-        [self.game.board clearBoard];
+        [self.curGame resetPlayers];
+        [self.curGame.board clearBoard];
         [self.collectionView reloadData];
     }];
 }

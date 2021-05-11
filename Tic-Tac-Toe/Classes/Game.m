@@ -6,18 +6,8 @@
 //
 
 #import "Game.h"
-#import "NotificationNames.h"
 
 @interface Game()
-
-@property (strong, nonatomic) Player *playerOne;
-@property (strong, nonatomic) Player *playerTwo;
-@property (strong, nonatomic) Player *currentPlayer;
-@property (strong, nonatomic) Player *botPlayer;
-@property (strong, nonatomic) NSMutableArray<Move*>* undoStack;
-@property (strong, nonatomic) NSMutableArray<Move*>* redoStack;
-
-@property (weak, nonatomic) id<OutputDelegate> outputDelegate;
 
 @end
 
@@ -40,7 +30,8 @@
     return self;
 }
 
--(void)makeMove
+//different
+/*-(void)makeMove
 {
     EnumCellState state = EnumCellStateEmpty;
     NSArray<NSNumber *> *coords = [self.currentPlayer makeMove];
@@ -74,7 +65,7 @@
     }
     
     [self.outputDelegate draw];
-}
+}*/
 
 -(void)changePlayer
 {
