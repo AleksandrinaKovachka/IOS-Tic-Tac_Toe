@@ -11,6 +11,7 @@
 #import "TunakTunakTunGame.h"
 #import "GameCollectionViewCell.h"
 #import "GameOverViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface GameCollectionViewController ()
 
@@ -47,6 +48,7 @@ static NSString * const reuseIdentifier = @"GameCell";
 {
     self.curGame = self.tunakTunakTunGame;
 }
+
 
 /*
 #pragma mark - Navigation
@@ -125,9 +127,38 @@ static NSString * const reuseIdentifier = @"GameCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    int lastSelectedCell = self.lastSelected;
+    
     self.lastSelected = (int) indexPath.item;
-    //cell.selected = YES;
-    [self.curGame makeMove];
+    
+    if ([self.curGame.board isCorrectMove:[self moveCoordinates]])
+    {
+        [self.curGame makeMove];
+    }
+    else
+    {
+        self.lastSelected = lastSelectedCell;
+        int soundChoice = arc4random_uniform((uint32_t)1);
+        if (soundChoice == 0)
+        {
+            NSString* path = [NSString stringWithFormat:@"%@/spank-3.mp3", [[NSBundle mainBundle] resourcePath]];
+            NSURL* soundUrl = [NSURL fileURLWithPath:path];
+            
+            AVAudioPlayer* audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundUrl error:nil];
+            
+            [audioPlayer play];
+        }
+        else
+        {
+            NSString* path = [NSString stringWithFormat:@"%@/wrong_4wlZSJh.mp3", [[NSBundle mainBundle] resourcePath]];
+            NSURL* soundUrl = [NSURL fileURLWithPath:path];
+            
+            AVAudioPlayer* audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundUrl error:nil];
+            
+            [audioPlayer play];
+        }
+    }
+
     
 }
 

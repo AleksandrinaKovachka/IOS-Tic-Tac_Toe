@@ -28,6 +28,9 @@
 		8EC2316A263AAA3A008EACBE /* GameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC23169263AAA3A008EACBE /* GameOverViewController.m */; };
 		8EC2316F264A676F008EACBE /* TicTacToeGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC2316E264A676F008EACBE /* TicTacToeGame.m */; };
 		8EC23173264A68F4008EACBE /* TunakTunakTunGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC23172264A68F4008EACBE /* TunakTunakTunGame.m */; };
+		8EC2317A264ABF30008EACBE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC23179264ABF30008EACBE /* AVFoundation.framework */; };
+		8EC23181264AC062008EACBE /* wrong_4wlZSJh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8EC23180264AC062008EACBE /* wrong_4wlZSJh.mp3 */; };
+		8EC23184264AC07B008EACBE /* spank-3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8EC23183264AC07B008EACBE /* spank-3.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +76,9 @@
 		8EC2316E264A676F008EACBE /* TicTacToeGame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TicTacToeGame.m; sourceTree = "<group>"; };
 		8EC23171264A68F4008EACBE /* TunakTunakTunGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TunakTunakTunGame.h; sourceTree = "<group>"; };
 		8EC23172264A68F4008EACBE /* TunakTunakTunGame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TunakTunakTunGame.m; sourceTree = "<group>"; };
+		8EC23179264ABF30008EACBE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		8EC23180264AC062008EACBE /* wrong_4wlZSJh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wrong_4wlZSJh.mp3; sourceTree = "<group>"; };
+		8EC23183264AC07B008EACBE /* spank-3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "spank-3.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EC2317A264ABF30008EACBE /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +98,7 @@
 			children = (
 				8E580C0A26245F7E0015F22C /* Tic-Tac-Toe */,
 				8E580C0926245F7E0015F22C /* Products */,
+				8EC23178264ABF2F008EACBE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +123,7 @@
 				8E580C1126245F7E0015F22C /* ViewController.h */,
 				8E580C1226245F7E0015F22C /* ViewController.m */,
 				8E580C1426245F7E0015F22C /* Main.storyboard */,
+				8EC2317B264ABF78008EACBE /* Sounds */,
 				8E580C1726245F7F0015F22C /* Assets.xcassets */,
 				8E580C1926245F7F0015F22C /* LaunchScreen.storyboard */,
 				8E580C1C26245F7F0015F22C /* Info.plist */,
@@ -174,6 +183,23 @@
 			path = Itilities;
 			sourceTree = "<group>";
 		};
+		8EC23178264ABF2F008EACBE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8EC23179264ABF30008EACBE /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8EC2317B264ABF78008EACBE /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				8EC23183264AC07B008EACBE /* spank-3.mp3 */,
+				8EC23180264AC062008EACBE /* wrong_4wlZSJh.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -231,7 +257,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E580C1B26245F7F0015F22C /* LaunchScreen.storyboard in Resources */,
+				8EC23181264AC062008EACBE /* wrong_4wlZSJh.mp3 in Resources */,
 				8E580C1826245F7F0015F22C /* Assets.xcassets in Resources */,
+				8EC23184264AC07B008EACBE /* spank-3.mp3 in Resources */,
 				8E580C1626245F7E0015F22C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

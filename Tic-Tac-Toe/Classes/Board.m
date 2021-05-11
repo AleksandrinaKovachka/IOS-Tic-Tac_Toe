@@ -6,6 +6,7 @@
 //
 
 #import "Board.h"
+#import "NotificationNames.h"
 
 @interface Board ()
 
@@ -255,6 +256,20 @@
     }
     
     return YES;
+}
+
+-(BOOL)isCorrectMove:(NSArray<NSArray<NSNumber *> *> *)coords
+{
+    NSArray<NSNumber *> *coordinates = coords.firstObject;
+    
+    EnumCellState state = [self currentCellState:coordinates];
+    
+    if (state != EnumCellStateRed && state != EnumCellStateX && state != EnumCellStateO)
+    {
+        return YES;
+    }
+    
+    return NO;
 }
 
 -(NSArray<NSArray<NSNumber *> *> *)moveCoordinates
