@@ -31,6 +31,8 @@
 		8EC2317A264ABF30008EACBE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC23179264ABF30008EACBE /* AVFoundation.framework */; };
 		8EC23181264AC062008EACBE /* wrong_4wlZSJh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8EC23180264AC062008EACBE /* wrong_4wlZSJh.mp3 */; };
 		8EC23184264AC07B008EACBE /* spank-3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8EC23183264AC07B008EACBE /* spank-3.mp3 */; };
+		8EC23188264BBB6C008EACBE /* GameSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC23187264BBB6C008EACBE /* GameSelectionViewController.m */; };
+		8EC23191264BE1E3008EACBE /* TemplatePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC23190264BE1E3008EACBE /* TemplatePageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +81,10 @@
 		8EC23179264ABF30008EACBE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8EC23180264AC062008EACBE /* wrong_4wlZSJh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wrong_4wlZSJh.mp3; sourceTree = "<group>"; };
 		8EC23183264AC07B008EACBE /* spank-3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "spank-3.mp3"; sourceTree = "<group>"; };
+		8EC23186264BBB6C008EACBE /* GameSelectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameSelectionViewController.h; sourceTree = "<group>"; };
+		8EC23187264BBB6C008EACBE /* GameSelectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameSelectionViewController.m; sourceTree = "<group>"; };
+		8EC2318F264BE1E3008EACBE /* TemplatePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TemplatePageViewController.h; sourceTree = "<group>"; };
+		8EC23190264BE1E3008EACBE /* TemplatePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TemplatePageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +176,10 @@
 				8EBBEFA326382E8500F60244 /* UserInfoViewController.m */,
 				8EC23168263AAA3A008EACBE /* GameOverViewController.h */,
 				8EC23169263AAA3A008EACBE /* GameOverViewController.m */,
+				8EC23186264BBB6C008EACBE /* GameSelectionViewController.h */,
+				8EC23187264BBB6C008EACBE /* GameSelectionViewController.m */,
+				8EC2318F264BE1E3008EACBE /* TemplatePageViewController.h */,
+				8EC23190264BE1E3008EACBE /* TemplatePageViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -285,6 +295,8 @@
 				8E580C1026245F7E0015F22C /* SceneDelegate.m in Sources */,
 				8EBBEFA0263827AC00F60244 /* GameContainerViewController.m in Sources */,
 				8EBBEFA8263851C600F60244 /* Move.m in Sources */,
+				8EC23188264BBB6C008EACBE /* GameSelectionViewController.m in Sources */,
+				8EC23191264BE1E3008EACBE /* TemplatePageViewController.m in Sources */,
 				8EBBEF6F2629910700F60244 /* Game.m in Sources */,
 				8EBBEF7D262D950600F60244 /* BotEasy.m in Sources */,
 				8EBBEF67262990DD00F60244 /* Player.m in Sources */,

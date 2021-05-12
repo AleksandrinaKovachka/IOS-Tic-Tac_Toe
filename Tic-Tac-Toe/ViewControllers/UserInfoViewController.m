@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *anotherPlayerLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *anotherPlayerSwitchState;
+@property (nonatomic) NSUInteger index;
 
 
 
@@ -22,16 +23,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.gameNameArray = @[@"Tic-Tac-Toe", @"Tunak-Tunak-Tun"];
+    self.imageNameArray = @[@"logo", @"logoTunakTunakTun"];
+    
+    self.gameSelection = [self.storyboard instantiateViewControllerWithIdentifier:@"GameSelectionID"];
+    self.gameSelection.dataSource = self;
+    
+    TemplatePageViewController* templateViewController = [self viewControllerAtIndex:0];
+    NSArray* viewControllers = @[templateViewController];
+    [self.gameSelection setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    
+    self.gameSelection.view.frame = CGRectMake(0, 320, self.view.frame.size.width, self.view.frame.size.height - 450);
+    
+    [self addChildViewController:self.gameSelection];
+    [self.view addSubview:self.gameSelection.view];
+    [self.gameSelection didMoveToParentViewController:self];
 }
 
-- (IBAction)onClickPlayTicTacToew:(id)sender
+/*- (IBAction)onClickPlayTicTacToew:(id)sender
 {
     NSString* anotherPlayer = [[NSString alloc] initWithString: self.anotherPlayerSwitchState.on == YES ? self.anotherPlayerNameTextField.text : @"Bot"];
     
     [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_TIC_TAC_TOE_GAME object:nil userInfo:nil];
     [self.nameDelegate getPlayerName:self.userNameTextField.text andAnotherPlayerName:anotherPlayer];
-    //[NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_TIC_TAC_TOE_GAME object:nil userInfo:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -41,8 +56,28 @@
     
     [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_TUNAK_TUNAK_TUN_GAME object:nil userInfo:nil];
     [self.nameDelegate getPlayerName:self.userNameTextField.text andAnotherPlayerName:anotherPlayer];
-    //[NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_TUNAK_TUNAK_TUN_GAME object:nil userInfo:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
+}*/
+
+
+- (IBAction)onClickPlayGame:(id)sender
+{
+    if (self.index == 0)
+    {
+        NSString* anotherPlayer = [[NSString alloc] initWithString: self.anotherPlayerSwitchState.on == YES ? self.anotherPlayerNameTextField.text : @"Bot"];
+        
+        [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_TIC_TAC_TOE_GAME object:nil userInfo:nil];
+        [self.nameDelegate getPlayerName:self.userNameTextField.text andAnotherPlayerName:anotherPlayer];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else
+    {
+        NSString* anotherPlayer = [[NSString alloc] initWithString: self.anotherPlayerSwitchState.on == YES ? self.anotherPlayerNameTextField.text : @"Bot"];
+        
+        [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_TUNAK_TUNAK_TUN_GAME object:nil userInfo:nil];
+        [self.nameDelegate getPlayerName:self.userNameTextField.text andAnotherPlayerName:anotherPlayer];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 
@@ -69,6 +104,60 @@
     }
 }
 
+
+#pragma mark - Page View Controller Data Source
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
+{
+    NSUInteger index = ((TemplatePageViewController*) viewController).pageIndex;
+    
+    if ((index == 0) || (index == NSNotFound)) {
+        return nil;
+    }
+    
+    index--;
+    return [self viewControllerAtIndex:index];
+}
+ 
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
+{
+    NSUInteger index = ((TemplatePageViewController*) viewController).pageIndex;
+    
+    if (index == NSNotFound) {
+        return nil;
+    }
+    
+    index++;
+    if (index == [self.gameNameArray count]) {
+        return nil;
+    }
+    return [self viewControllerAtIndex:index];
+}
+
+- (TemplatePageViewController *)viewControllerAtIndex:(NSUInteger)index
+{
+    if (([self.gameNameArray count] == 0) || (index >= [self.gameNameArray count])) {
+        return nil;
+    }
+    
+    TemplatePageViewController* templatePageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"TemplatePageID"];
+    templatePageViewController.imageName = self.imageNameArray[index];
+    templatePageViewController.gameNameText = self.gameNameArray[index];
+    templatePageViewController.pageIndex = index;
+    self.index = index;
+    
+    return templatePageViewController;
+}
+
+- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
+{
+    return [self.gameNameArray count];
+}
+ 
+- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
+{
+    return 0;
+}
 
 /*
 #pragma mark - Navigation

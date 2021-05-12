@@ -7,12 +7,17 @@
 
 #import <UIKit/UIKit.h>
 #import "Protocols.h"
+#import "TemplatePageViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UserInfoViewController : UIViewController
+@interface UserInfoViewController : UIViewController <UIPageViewControllerDataSource>
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *anotherPlayerNameTextField;
+
+@property (strong, nonatomic) UIPageViewController* gameSelection;
+@property (strong, nonatomic) NSArray* gameNameArray;
+@property (strong, nonatomic) NSArray* imageNameArray;
 
 @property (weak) id<UserNameDelegate> nameDelegate;
 
