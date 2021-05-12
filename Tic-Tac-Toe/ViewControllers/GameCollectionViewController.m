@@ -191,6 +191,7 @@ static NSString * const reuseIdentifier = @"GameCell";
 -(void)drawGameOver
 {
     GameOverViewController* winner = [GameOverViewController gameOverViewControllerWithWinnerName:self.curGame.gameOver];
+    winner.modalInPresentation = YES;
     
     [self presentViewController:winner animated:YES completion: ^{
         [self.curGame resetPlayers];

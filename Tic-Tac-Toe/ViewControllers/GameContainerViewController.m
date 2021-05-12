@@ -23,6 +23,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     UserInfoViewController* user = [UserInfoViewController viewControllerFromStoryboardWithNameDelegate:self];
+    user.modalInPresentation = YES;
     [self presentViewController:user animated:YES completion:nil];
 }
 

@@ -30,43 +30,6 @@
     return self;
 }
 
-//different
-/*-(void)makeMove
-{
-    EnumCellState state = EnumCellStateEmpty;
-    NSArray<NSNumber *> *coords = [self.currentPlayer makeMove];
-    
-    if (self.currentPlayer == self.playerOne)
-    {
-        state = EnumCellStateX;
-    }
-    else
-    {
-        state = EnumCellStateO;
-    }
-    
-    [self pushMoveInUndo:[[Move alloc] initWithCoordinates:coords andCurrentState:state andPreviousState:EnumCellStateEmpty]];
-    [self clearRedoStack];
-
-    [self.board setMoveCoordinates:coords andState:state]; //TODO: without state
-    
-    if (self.board.isFull || self.checkWin)
-    {
-        [self.outputDelegate draw];
-        [self.outputDelegate drawGameOver];
-        return;
-    }
-    
-    [self changePlayer];
-    
-    if (self.currentPlayer == self.botPlayer)
-    {
-        [self makeMove];
-    }
-    
-    [self.outputDelegate draw];
-}*/
-
 -(void)changePlayer
 {
     if (self.currentPlayer == self.playerOne)

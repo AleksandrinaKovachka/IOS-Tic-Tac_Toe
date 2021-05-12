@@ -108,7 +108,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LVl-S2-Ux5"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="fFb-yo-auf" firstAttribute="centerX" secondItem="LVl-S2-Ux5" secondAttribute="centerX" id="9yN-bn-Iug"/>
                             <constraint firstItem="hd5-Im-Qor" firstAttribute="centerY" secondItem="LVl-S2-Ux5" secondAttribute="centerY" id="GoS-1f-cPQ"/>
@@ -256,7 +256,7 @@
             <objects>
                 <collectionViewController storyboardIdentifier="GameCollectionID" id="3rZ-3A-bKZ" customClass="GameCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="pXG-Fq-X2v">
-                        <rect key="frame" x="0.0" y="0.0" width="340" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="341" height="359"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="uPN-sU-kzC">
@@ -308,18 +308,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game is over!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fr0-xd-lll">
-                                <rect key="frame" x="111.66666666666669" y="140" width="152" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="29" id="MuZ-Hf-pw7"/>
-                                    <constraint firstAttribute="width" constant="152" id="YnC-Z9-RPv"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="winner name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ea-ek-lRX">
-                                <rect key="frame" x="33" y="268" width="307" height="24"/>
+                                <rect key="frame" x="33" y="347" width="307" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="307" id="HiH-3j-VT6"/>
                                     <constraint firstAttribute="height" constant="24" id="xJK-Nn-pcq"/>
@@ -328,28 +318,36 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gameOver" translatesAutoresizingMaskIntoConstraints="NO" id="eqJ-V4-cAq">
+                                <rect key="frame" x="69" y="100" width="237" height="171"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="237" id="I2S-m6-Eu2"/>
+                                    <constraint firstAttribute="height" constant="171" id="QrA-kv-Zgk"/>
+                                </constraints>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qw8-83-wKB">
-                                <rect key="frame" x="170" y="511" width="170" height="36"/>
+                                <rect key="frame" x="59.666666666666657" y="587" width="255.99999999999997" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="NZE-eY-mjt"/>
-                                    <constraint firstAttribute="width" constant="170" id="rzT-Or-Ogu"/>
+                                    <constraint firstAttribute="width" constant="256" id="rzT-Or-Ogu"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Start another game"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Start new game"/>
                                 <connections>
                                     <action selector="onClickStartGame:" destination="Is8-Vw-445" eventType="touchUpInside" id="1Vr-sS-Bzj"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ax7-ir-eKn"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="qw8-83-wKB" firstAttribute="leading" secondItem="ax7-ir-eKn" secondAttribute="leading" constant="170" id="8gG-IO-gsx"/>
-                            <constraint firstItem="4ea-ek-lRX" firstAttribute="top" secondItem="fr0-xd-lll" secondAttribute="bottom" constant="99" id="Pfx-2z-jjd"/>
-                            <constraint firstItem="qw8-83-wKB" firstAttribute="top" secondItem="4ea-ek-lRX" secondAttribute="bottom" constant="219" id="dXU-uW-EXR"/>
+                            <constraint firstItem="4ea-ek-lRX" firstAttribute="top" secondItem="eqJ-V4-cAq" secondAttribute="bottom" constant="76" id="DCv-rP-NeO"/>
+                            <constraint firstItem="eqJ-V4-cAq" firstAttribute="centerX" secondItem="ax7-ir-eKn" secondAttribute="centerX" id="Loh-QC-X2G"/>
+                            <constraint firstItem="qw8-83-wKB" firstAttribute="centerX" secondItem="ax7-ir-eKn" secondAttribute="centerX" id="NZ3-iR-aBp"/>
+                            <constraint firstItem="ax7-ir-eKn" firstAttribute="bottom" secondItem="eqJ-V4-cAq" secondAttribute="bottom" constant="507" id="Wpx-Jp-Gqa"/>
+                            <constraint firstItem="eqJ-V4-cAq" firstAttribute="leading" secondItem="ax7-ir-eKn" secondAttribute="leading" constant="69" id="bTC-YP-BSt"/>
+                            <constraint firstItem="qw8-83-wKB" firstAttribute="top" secondItem="4ea-ek-lRX" secondAttribute="bottom" constant="216" id="dXl-x6-fEg"/>
                             <constraint firstItem="4ea-ek-lRX" firstAttribute="centerX" secondItem="ax7-ir-eKn" secondAttribute="centerX" constant="-1" id="fVh-A8-09u"/>
-                            <constraint firstItem="ax7-ir-eKn" firstAttribute="bottom" secondItem="fr0-xd-lll" secondAttribute="bottom" constant="609" id="mbO-2j-MkL"/>
-                            <constraint firstItem="fr0-xd-lll" firstAttribute="centerX" secondItem="ax7-ir-eKn" secondAttribute="centerX" id="v9c-Pz-MnK"/>
                         </constraints>
                     </view>
                     <connections>
@@ -369,10 +367,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hQ-vv-Khj">
-                                <rect key="frame" x="17.666666666666657" y="178" width="340" height="600"/>
+                                <rect key="frame" x="18" y="178" width="341" height="359"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="340" id="Bzg-uW-s7V"/>
-                                    <constraint firstAttribute="height" constant="600" id="nq3-n9-uVQ"/>
+                                    <constraint firstAttribute="width" constant="341" id="Bzg-uW-s7V"/>
+                                    <constraint firstAttribute="height" constant="359" id="nq3-n9-uVQ"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="3rZ-3A-bKZ" kind="embed" identifier="EmbedCollectionViewIdentifier" id="MqJ-l4-Ual"/>
@@ -398,13 +397,13 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Upn-wj-VBn"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4hQ-vv-Khj" firstAttribute="top" secondItem="atj-lK-i5V" secondAttribute="bottom" constant="41" id="0d8-W6-ZUF"/>
                             <constraint firstItem="atj-lK-i5V" firstAttribute="top" secondItem="Upn-wj-VBn" secondAttribute="top" constant="25" id="Awy-u4-u0Z"/>
-                            <constraint firstItem="Upn-wj-VBn" firstAttribute="bottom" secondItem="4hQ-vv-Khj" secondAttribute="bottom" id="E5d-Ag-vIl"/>
+                            <constraint firstItem="Upn-wj-VBn" firstAttribute="bottom" secondItem="4hQ-vv-Khj" secondAttribute="bottom" constant="241" id="E5d-Ag-vIl"/>
                             <constraint firstItem="atj-lK-i5V" firstAttribute="leading" secondItem="Upn-wj-VBn" secondAttribute="leading" constant="19" id="M7g-0c-3Og"/>
-                            <constraint firstItem="4hQ-vv-Khj" firstAttribute="centerX" secondItem="Upn-wj-VBn" secondAttribute="centerX" id="MuV-0e-axc"/>
+                            <constraint firstItem="4hQ-vv-Khj" firstAttribute="centerX" secondItem="Upn-wj-VBn" secondAttribute="centerX" constant="1" id="MuV-0e-axc"/>
                             <constraint firstItem="Upn-wj-VBn" firstAttribute="trailing" secondItem="QYa-Ww-wOc" secondAttribute="trailing" constant="16" id="sPt-R9-Gcj"/>
                             <constraint firstItem="atj-lK-i5V" firstAttribute="centerY" secondItem="QYa-Ww-wOc" secondAttribute="centerY" id="xMy-gz-0Pb"/>
                         </constraints>
@@ -436,6 +435,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="gameOver" width="1300" height="920"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

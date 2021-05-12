@@ -24,6 +24,8 @@
 {
     [super viewDidLoad];
     
+    
+    
     self.gameNameArray = @[@"Tic-Tac-Toe", @"Tunak-Tunak-Tun"];
     self.imageNameArray = @[@"logo", @"logoTunakTunakTun"];
     
@@ -41,42 +43,36 @@
     [self.gameSelection didMoveToParentViewController:self];
 }
 
-/*- (IBAction)onClickPlayTicTacToew:(id)sender
-{
-    NSString* anotherPlayer = [[NSString alloc] initWithString: self.anotherPlayerSwitchState.on == YES ? self.anotherPlayerNameTextField.text : @"Bot"];
-    
-    [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_TIC_TAC_TOE_GAME object:nil userInfo:nil];
-    [self.nameDelegate getPlayerName:self.userNameTextField.text andAnotherPlayerName:anotherPlayer];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)onClickPlayTunakTunakTun:(id)sender
-{
-    NSString* anotherPlayer = [[NSString alloc] initWithString: self.anotherPlayerSwitchState.on == YES ? self.anotherPlayerNameTextField.text : @"Bot"];
-    
-    [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_TUNAK_TUNAK_TUN_GAME object:nil userInfo:nil];
-    [self.nameDelegate getPlayerName:self.userNameTextField.text andAnotherPlayerName:anotherPlayer];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}*/
-
-
 - (IBAction)onClickPlayGame:(id)sender
 {
-    if (self.index == 0)
+    if (self.userNameTextField.text.length == 0 || (self.anotherPlayerNameTextField.hidden == NO && self.anotherPlayerNameTextField.text.length == 0))
     {
-        NSString* anotherPlayer = [[NSString alloc] initWithString: self.anotherPlayerSwitchState.on == YES ? self.anotherPlayerNameTextField.text : @"Bot"];
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error!" message:@"You have to fill name in free field!" preferredStyle:UIAlertControllerStyleAlert];
         
-        [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_TIC_TAC_TOE_GAME object:nil userInfo:nil];
-        [self.nameDelegate getPlayerName:self.userNameTextField.text andAnotherPlayerName:anotherPlayer];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
     }
     else
     {
-        NSString* anotherPlayer = [[NSString alloc] initWithString: self.anotherPlayerSwitchState.on == YES ? self.anotherPlayerNameTextField.text : @"Bot"];
-        
-        [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_TUNAK_TUNAK_TUN_GAME object:nil userInfo:nil];
-        [self.nameDelegate getPlayerName:self.userNameTextField.text andAnotherPlayerName:anotherPlayer];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        if (self.index == 0)
+        {
+            NSString* anotherPlayer = [[NSString alloc] initWithString: self.anotherPlayerSwitchState.on == YES ? self.anotherPlayerNameTextField.text : @"Bot"];
+            
+            [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_TIC_TAC_TOE_GAME object:nil userInfo:nil];
+            [self.nameDelegate getPlayerName:self.userNameTextField.text andAnotherPlayerName:anotherPlayer];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        else
+        {
+            NSString* anotherPlayer = [[NSString alloc] initWithString: self.anotherPlayerSwitchState.on == YES ? self.anotherPlayerNameTextField.text : @"Bot"];
+            
+            [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_TUNAK_TUNAK_TUN_GAME object:nil userInfo:nil];
+            [self.nameDelegate getPlayerName:self.userNameTextField.text andAnotherPlayerName:anotherPlayer];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
     }
 }
 
