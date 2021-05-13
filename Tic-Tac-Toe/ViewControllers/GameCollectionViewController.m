@@ -194,8 +194,7 @@ static NSString * const reuseIdentifier = @"GameCell";
     winner.modalInPresentation = YES;
     
     [self presentViewController:winner animated:YES completion: ^{
-        [self.curGame resetPlayers];
-        [self.curGame.board clearBoard];
+        [self.curGame resetGame];
         [self.collectionView reloadData];
     }];
 }

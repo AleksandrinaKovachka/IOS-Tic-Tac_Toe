@@ -164,10 +164,20 @@
     [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_EMPTY_REDO object:nil userInfo:nil];
 }
 
+-(void)resetGame
+{
+    [self resetPlayers];
+    [self.board clearBoard];
+}
+
 -(void)resetPlayers
 {
     [self.playerOne changeScoreWith:0];
     [self.playerTwo changeScoreWith:0];
+    if (self.currentPlayer == self.playerTwo)
+    {
+        [self changePlayer];
+    }
     
     [self clearUndoStack];
     [self clearRedoStack];

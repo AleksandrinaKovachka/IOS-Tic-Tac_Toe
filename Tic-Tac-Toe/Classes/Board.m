@@ -79,12 +79,6 @@
     [self setMoveWithCordX:coordinates[0].intValue cordY:coordinates[1].intValue andState:state];
 }
 
-/*-(void)setMoveCoordinates:(NSArray<NSNumber*>*)coordinates
-{
-    Cell *cell = [self cellAtX:coordinates[0].intValue andY:coordinates[1].intValue];
-    //[cell changeState];
-}*/
-
 -(BOOL)hasNoGapsRow
 {
     /*int count = 1;
@@ -222,6 +216,7 @@
         return  YES;
     }
     
+    hasNoGaps = YES;
     for (int i = 0; i < self.rows - 1; ++i)
     {
         --count;
@@ -231,7 +226,7 @@
         }
     }
     
-    if (hasNoGaps && [self cellAtX:self.rows - 1 andY:self.rows - 1].state != EnumCellStateEmpty)
+    if (hasNoGaps && [self cellAtX:0 andY:self.columns - 1].state != EnumCellStateEmpty)
     {
         return  YES;
     }
@@ -288,15 +283,6 @@
     
     return coordinates;
 }
-
-/*-(BOOL)isFreeCellWithX:(int)x andY:(int)y
-{
-    if ([self cellAtX:x andY:y].state == EnumCellStateEmpty) {
-        return YES;
-    }
-    
-    return NO;
-}*/
 
 -(int)columnsCount
 {

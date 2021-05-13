@@ -36,7 +36,7 @@
     NSArray* viewControllers = @[templateViewController];
     [self.gameSelection setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
-    self.gameSelection.view.frame = CGRectMake(0, 320, self.view.frame.size.width, self.view.frame.size.height - 450);
+    self.gameSelection.view.frame = CGRectMake(0, 330, self.view.frame.size.width, self.view.frame.size.height - 450);
     
     [self addChildViewController:self.gameSelection];
     [self.view addSubview:self.gameSelection.view];
@@ -47,13 +47,27 @@
 {
     if (self.userNameTextField.text.length == 0 || (self.anotherPlayerNameTextField.hidden == NO && self.anotherPlayerNameTextField.text.length == 0))
     {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error!" message:@"You have to fill name in free field!" preferredStyle:UIAlertControllerStyleAlert];
+        if (self.userNameTextField.text.length == 0)
+        {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [UIView animateWithDuration:0.5f animations:^{
+                    self.userNameTextField.backgroundColor = [UIColor systemRedColor];
+                } completion:^(BOOL finished){
+                    self.userNameTextField.backgroundColor = [UIColor clearColor];
+                }];
+            });
+        }
         
-        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-        
-        [alert addAction:ok];
-        
-        [self presentViewController:alert animated:YES completion:nil];
+        if (self.anotherPlayerNameTextField.hidden == NO && self.anotherPlayerNameTextField.text.length == 0)
+        {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [UIView animateWithDuration:0.5f animations:^{
+                    self.anotherPlayerNameTextField.backgroundColor = [UIColor systemRedColor];
+                } completion:^(BOOL finished){
+                    self.anotherPlayerNameTextField.backgroundColor = [UIColor clearColor];
+                }];
+            });
+        }
     }
     else
     {
