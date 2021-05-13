@@ -16,8 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextField *anotherPlayerNameTextField;
 
 @property (strong, nonatomic) UIPageViewController* gameSelection;
-@property (strong, nonatomic) NSArray* gameNameArray;
-@property (strong, nonatomic) NSArray* imageNameArray;
+
 
 @property (weak) id<UserNameDelegate> nameDelegate;
 

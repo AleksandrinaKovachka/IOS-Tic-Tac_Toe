@@ -13,7 +13,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *anotherPlayerLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *anotherPlayerSwitchState;
 @property (nonatomic) NSUInteger index;
-
+@property (strong, nonatomic) NSArray<NSString *>* gameNameArray;
+@property (strong, nonatomic) NSArray<NSString *>* imageNameArray;
 
 
 @end
@@ -23,24 +24,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
-    
-    self.gameNameArray = @[@"Tic-Tac-Toe", @"Tunak-Tunak-Tun"];
-    self.imageNameArray = @[@"logo", @"logoTunakTunakTun"];
-    
-    self.gameSelection = [self.storyboard instantiateViewControllerWithIdentifier:@"GameSelectionID"];
-    self.gameSelection.dataSource = self;
-    
-    TemplatePageViewController* templateViewController = [self viewControllerAtIndex:0];
-    NSArray* viewControllers = @[templateViewController];
-    [self.gameSelection setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-    
-    self.gameSelection.view.frame = CGRectMake(0, 330, self.view.frame.size.width, self.view.frame.size.height - 450);
-    
-    [self addChildViewController:self.gameSelection];
-    [self.view addSubview:self.gameSelection.view];
-    [self.gameSelection didMoveToParentViewController:self];
 }
 
 - (IBAction)onClickPlayGame:(id)sender
@@ -161,7 +144,7 @@
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
 {
-    return [self.gameNameArray count];
+    return self.gameNameArray.count;
 }
  
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
@@ -169,14 +152,21 @@
     return 0;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"EmbedGameTypePageViewControllerID"])
+    {
+        self.gameNameArray = @[@"Tic-Tac-Toe", @"Tunak-Tunak-Tun"];
+        self.imageNameArray = @[@"logo", @"logoTunakTunakTun"];
+        self.gameSelection = (UIPageViewController *)segue.destinationViewController;
+        self.gameSelection.dataSource = self;
+        TemplatePageViewController* templateViewController = [self viewControllerAtIndex:0];
+        [self.gameSelection setViewControllers:@[templateViewController] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    }
 }
-*/
+
 
 @end

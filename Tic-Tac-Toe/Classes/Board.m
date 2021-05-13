@@ -81,30 +81,6 @@
 
 -(BOOL)hasNoGapsRow
 {
-    /*int count = 1;
-    for (int i = 0; i < self.cells.count; ++i)
-    {
-        if (count == self.columns)
-        {
-            if (self.cells[i].state != EnumCellStateEmpty)
-            {
-                return YES;
-            }
-            count = 1;
-            continue;
-        }
-        
-        if (self.cells[i].state != self.cells[i + 1].state)
-        {
-            i += self.columns - count;
-            count = 1;
-            continue;
-        }
-        ++count;
-    }
-    
-    return NO;*/
-    
     BOOL hasNoGaps = YES;
     
     for (int i = 0; i < self.rows; ++i)
@@ -128,29 +104,6 @@
 
 -(BOOL)hasNoGapsColumn
 {
-    /*BOOL hasNoGaps = YES;
-    int count = self.columns - 1;
-    for (int i = 0; i < self.columns; ++i)
-    {
-        
-        for (int j = i; j < self.cells.count - count - 1; j += self.columns)
-        {
-            if (self.cells[j].state != self.cells[j + self.columns].state)
-            {
-                hasNoGaps = NO;
-                break;
-            }
-        }
-        
-        if (hasNoGaps && self.cells[i].state != EnumCellStateEmpty)
-        {
-            return YES;
-        }
-        --count;
-    }
-    
-    return NO;*/
-    
     BOOL hasNoGaps = YES;
     
     for (int j = 0; j < self.columns; ++j)
@@ -174,32 +127,6 @@
 
 -(BOOL)hasNoGapsDiagonal
 {
-    /*BOOL hasNoGaps = YES;
-    for (int i = 0; i < self.cells.count - 1; i += self.columns + 1)
-    {
-        if (self.cells[i].state != self.cells[i + self.columns + 1].state)
-        {
-            hasNoGaps = NO;
-            break;
-        }
-    }
-    if (hasNoGaps && self.cells[0].state != EnumCellStateEmpty) {
-        return YES;
-    }
-    hasNoGaps = YES;
-    for (int i = self.columns - 1; i < self.cells.count - self.columns; i += self.columns - 1) {
-        if (self.cells[i].state != self.cells[i + self.columns - 1].state) {
-            hasNoGaps = NO;
-            break;
-        }
-    }
-    
-    if (hasNoGaps && self.cells[self.cells.count - 1].state != EnumCellStateEmpty) {
-        return YES;
-    }
-    
-    return NO;*/
-    
     BOOL hasNoGaps = YES;
     int count = self.columns;
     
