@@ -39,20 +39,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)changePlayerNameWith:(NSString*)name andAnotherPlayerName:(NSString*)anotherName;
 -(void)resetGame;
-//-(void)resetPlayers;
 
 -(void)changePlayer;
-
 -(void)pushMoveInUndo:(Move*)move;
-
 -(void)pushMoveInRedo:(Move*)undoMove;
-
 -(Move*)popFromUndo;
-
 -(Move*)popFromRedo;
-
 -(void)clearUndoStack;
-
 -(void)clearRedoStack;
 
 

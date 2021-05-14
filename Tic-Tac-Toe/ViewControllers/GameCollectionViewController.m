@@ -141,7 +141,7 @@ static NSString * const reuseIdentifier = @"GameCell";
         int soundChoice = arc4random_uniform((uint32_t)1);
         if (soundChoice == 0)
         {
-            NSString* path = [NSString stringWithFormat:@"%@/spank-3.mp3", [[NSBundle mainBundle] resourcePath]];
+            NSString* path = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"spank-3.mp3"];
             NSURL* soundUrl = [NSURL fileURLWithPath:path];
             
             AVAudioPlayer* audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundUrl error:nil];
@@ -150,7 +150,7 @@ static NSString * const reuseIdentifier = @"GameCell";
         }
         else
         {
-            NSString* path = [NSString stringWithFormat:@"%@/wrong_4wlZSJh.mp3", [[NSBundle mainBundle] resourcePath]];
+            NSString* path = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"wrong_4wlZSJh.mp3"];
             NSURL* soundUrl = [NSURL fileURLWithPath:path];
             
             AVAudioPlayer* audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundUrl error:nil];

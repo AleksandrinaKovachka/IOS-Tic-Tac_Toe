@@ -49,7 +49,6 @@
     else if(self.state == EnumCellStateYellow)
     {
         self.state = EnumCellStateRed;
-        //notification to enable box
     }
 }
 

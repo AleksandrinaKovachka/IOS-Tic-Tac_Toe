@@ -12,9 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GameOverViewController : ViewController
 @property (weak, nonatomic) IBOutlet UILabel *winnerNameLabel;
 
-//id delegate
 
-+(instancetype)gameOverViewControllerWithWinnerName:(NSString*)name; // and delegate
++(instancetype)gameOverViewControllerWithWinnerName:(NSString*)name;
 
 @end
 

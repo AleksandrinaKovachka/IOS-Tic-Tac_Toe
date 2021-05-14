@@ -39,7 +39,6 @@
 -(void)changeScoreWith:(int)value
 {
     self.score = value == 0 ? 0 : self.score + value;
-    //self.score += value == 0 ? (-1) * value : value;
     [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_CHANGE_SCORE object:[NSNumber numberWithInt:self.score] userInfo:nil];
 }
 
